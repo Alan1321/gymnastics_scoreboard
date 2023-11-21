@@ -1,4 +1,6 @@
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom/cjs/react-router-dom.min"; 
+import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom/cjs/react-router-dom.min"; 
+
+import Header from "./Header";
 
 import Setups from "./setup_modes/Setups";
 import Duel from "./setup_modes/Duel";
@@ -12,6 +14,7 @@ import PostMeet from "./postmeet_mode/PostMeet";
 function App() {
   return (
     <Router>
+      <Header/>
       <Switch>
         <Route path="/" exact>
           <Setups />
@@ -34,6 +37,7 @@ function App() {
         <Route path="/postmeet" exact>
           <PostMeet />
         </Route>
+        <Redirect from="*" to="/" />
       </Switch>
     </Router>
   );
