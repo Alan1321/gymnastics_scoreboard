@@ -1,8 +1,17 @@
+import React from 'react';
+import { Link, useLocation } from 'react-router-dom';
+
 const Duel = () =>{
+
+    const location = useLocation();
+    const currentPage = location.pathname
 
     return (
         <div>
-            Duel Mode Screen
+            <div style={{height:'70px'}}></div>
+            <div>
+                Duel Mode Screen, {currentPage}
+            </div>
         </div>
     )
 }

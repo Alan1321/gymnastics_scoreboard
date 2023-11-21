@@ -9,6 +9,7 @@ import Button from '@mui/material/Button';
 const Setups = () =>{
     return (
         <div>
+            <div style={{height:'70px'}}></div>
             <div className='buttons'>
                 <Stack spacing={10} direction="row">
                     <Button size="large" variant="outlined" component={Link} to="/duel">Duel</Button>

@@ -4,6 +4,7 @@ import SportsGymnasticsIcon from '@mui/icons-material/SportsGymnastics';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import { Link } from 'react-router-dom';
 
+import "./header.css"
 
 const Header = () =>{
 

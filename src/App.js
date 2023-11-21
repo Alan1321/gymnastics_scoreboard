@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom/cjs/react-router-dom.min"; 
 
-import Header from "./Header";
+import Header from "./utils/Header"
 
 import Setups from "./setup_modes/Setups";
 import Duel from "./setup_modes/Duel";
