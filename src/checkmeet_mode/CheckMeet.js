@@ -1,6 +1,6 @@
 import Button from '@mui/material/Button';
 import Modal from "react-modal"
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 
 const CheckMeetUI = ({ receivedData, sendToParent }) =>{
 
@@ -11,6 +11,10 @@ const CheckMeetUI = ({ receivedData, sendToParent }) =>{
 
     const backHandler = () =>{
         sendToParent({fix:true, next:false})
+    }
+
+    const nextHandler = () =>{
+        sendToParent({fix:false, next:true})
     }
 
     return (
@@ -40,7 +44,8 @@ const CheckMeetUI = ({ receivedData, sendToParent }) =>{
                     <CheckUI lineUpType={'Bar LineUp'} status={dataChecked.current[2]}/>
                     <CheckUI lineUpType={'Beam LineUp'} status={dataChecked.current[3]}/>
                 </div>
-                {goBackButton && <Button variant="contained" color="success" onClick={backHandler} style={{marginTop:"2%"}}>Fix Data Input</Button>}
+                {goBackButton && <Button variant="contained" color="error" onClick={backHandler} style={{marginTop:"2%"}}>Fix Data Input</Button>}
+                {!goBackButton && <Button variant="contained" color="success" onClick={nextHandler} style={{marginTop:"2%"}}>Lets Go to the Next Page</Button>}
             </div>
         </Modal>      
     )
@@ -72,7 +77,7 @@ const CheckMeet = (data) => {
 }
 
 const checkVaultLineUp = (data, checks) => {
-    checks[0] = hasDuplicates(data['valutLineup'])
+    checks[0] = hasDuplicates(data['vaultLineup'])
     return checks
 }
 
@@ -96,8 +101,6 @@ const CheckJudges = (data) =>{
 }
 
 function hasDuplicates(array) {
-
-    console.log(array)
 
     const seen = {};
   

@@ -6,12 +6,14 @@ import UploadImage from '../utils/UplaodImage';
 import Button from '@mui/material/Button';
 import Modal from "react-modal"
 import CheckMeetUI from '../checkmeet_mode/CheckMeet';
+import { useHistory } from 'react-router-dom';
 
 Modal.setAppElement('#root');
 
 const Duel = () =>{
     
-    const data = [1,2,3,4,5]
+    const history = useHistory();
+    const data = [1,2,3,4,5,6,7]
     const [currentTeam, setCurrentTeam] = useState(1);
     const location = useLocation();
     const receivedData = useRef(location.state?.data || {})
@@ -22,7 +24,6 @@ const Duel = () =>{
         if(currentTeam === 1){
             receivedData.current['team1']['lineUpInfo'] = data
         }else if (currentTeam === 2){
-            receivedData.current['team2'] = {}
             receivedData.current['team2']['lineUpInfo'] = data
         }
         setButtonNext(true)
@@ -32,7 +33,6 @@ const Duel = () =>{
         if(currentTeam === 1){
             receivedData.current['team1']['playerPictures'] = data
         }else if (currentTeam === 2){
-            receivedData.current['team2'] = {}
             receivedData.current['team2']['playerPictures'] = data
         }
     }
@@ -57,28 +57,65 @@ const Duel = () =>{
             setModal(false)
             setCurrentTeam(currentTeam + 1)
         }
+        console.log(data)
     }
+
+    const sendToParentCheckMeet2 = (data) =>{
+        if(data.fix === true){
+            setModal(false)
+        }
+        if(data.next === true){
+            setModal(false)
+            const finalData = receivedData.current
+            console.log("finalData", finalData)
+            history.push({
+                pathname:'/run',
+                state:{finalData}
+            })
+        }
+    } 
 
     return (
         <div>
             <div style={{height:'70px'}}></div>
-            <div>
-                <h2 style={{textAlign:"center"}}>Team1 Data for Duel Mode.</h2>
-                <div style={{display:"flex"}}>
-                    <InputDropDowns getDropDownData={getDropDownData} data={data}/>
-                    <div style={{width:"15%", marginLeft:'10px', height:"40%"}}>
-                        <h3 style={{textAlign:"center"}}>Select Team Logo</h3>
-                        <UploadImage image_url={"/upload_logo.jpg"} label={"Upload Team Logo"} sendToParent={getLogo}/>
+            {currentTeam === 1 &&
+                <div>
+                    <h2 style={{textAlign:"center"}}>Team1 Data for Duel Mode.</h2>
+                    <div style={{display:"flex"}}>
+                        <InputDropDowns getDropDownData={getDropDownData} data={data} currentTeam={currentTeam}/>
+                        <div style={{width:"15%", marginLeft:'10px', height:"40%"}}>
+                            <h3 style={{textAlign:"center"}}>Select Team Logo</h3>
+                            <UploadImage image_url={"/upload_logo.jpg"} label={"Upload Team Logo"} sendToParent={getLogo} currentTeam={currentTeam}/>
+                        </div>
+                        <UploadImages sendToParent={getPlayerPictures}/>
                     </div>
-                    <UploadImages sendToParent={getPlayerPictures}/>
+                    <div style={{justifyContent:"space-around", marginTop:"1%", marginLeft:"95%"}}>
+                        <Button variant="contained" color="success" onClick={checkData} disabled={!buttonNext}>
+                            Next
+                        </Button>
+                    </div>
+                    {modal && <CheckMeetUI  receivedData={receivedData.current['team1']} sendToParent={sendToParentCheckMeet}/> }
                 </div>
-                <div style={{justifyContent:"space-around", marginTop:"1%", marginLeft:"95%"}}>
-                    <Button variant="contained" color="success" onClick={checkData} disabled={!buttonNext}>
-                        Next
-                    </Button>
+            }
+            {currentTeam === 2 &&
+                <div>
+                    <h2 style={{textAlign:"center"}}>Team2 Data for Duel Mode.</h2>
+                    <div style={{display:"flex"}}>
+                        <InputDropDowns getDropDownData={getDropDownData} data={data}/>
+                        <div style={{width:"15%", marginLeft:'10px', height:"40%"}}>
+                            <h3 style={{textAlign:"center"}}>Select Team Logo</h3>
+                            <UploadImage image_url={"/upload_logo.jpg"} label={"Upload Team Logo"} sendToParent={getLogo}/>
+                        </div>
+                        <UploadImages sendToParent={getPlayerPictures}/>
+                    </div>
+                    <div style={{justifyContent:"space-around", marginTop:"1%", marginLeft:"95%"}}>
+                        <Button variant="contained" color="success" onClick={checkData} disabled={!buttonNext}>
+                            Next
+                        </Button>
+                    </div>
+                    {modal && <CheckMeetUI  receivedData={receivedData.current['team2']} sendToParent={sendToParentCheckMeet2}/> }
                 </div>
-                {modal && <CheckMeetUI  receivedData={receivedData.current['team1']} sendToParent={sendToParentCheckMeet}/> }
-            </div>
+            }
         </div>
     )
 }

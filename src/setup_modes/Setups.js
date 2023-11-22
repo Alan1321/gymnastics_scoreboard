@@ -23,26 +23,26 @@ const Setups = () =>{
     }
     const triangularHandler = () =>{
         const data = {
-            "setup":"duel",
+            "setup":"triangular",
             "team1":{},
             "team2":{},
             "team3":{}
         }
         history.push({
-            pathname:"/duel",
+            pathname:"/triangular",
             state:{data}
         })
     }
     const quadHandler = () =>{
         const data = {
-            "setup":"duel",
+            "setup":"quad",
             "team1":{},
             "team2":{},
             "team3":{},
             "team4":{}
         }
         history.push({
-            pathname:"/duel",
+            pathname:"/quad",
             state:{data}
         })  
     }

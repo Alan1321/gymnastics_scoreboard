@@ -1,32 +1,37 @@
 import UploadImage from './UplaodImage';
+import { useRef, useEffect } from 'react';
 
-const UploadImages = ({ sendToParent }) =>{
+const UploadImages = ({ sendToParent, currentTeam }) =>{
 
-    const allImages = [null, null, null, null, null, null]
+    const allImages = useRef([null, null, null, null, null, null])
+
+    useEffect(()=>{
+        allImages.current = [null, null, null, null, null, null]
+    }, [currentTeam])
 
     const ImageData1 = (data) =>{
-        allImages[0] = data
-        sendToParent(allImages)
+        allImages.current[0] = data
+        sendToParent(allImages.current)
     }
     const ImageData2 = (data) =>{
-        allImages[1] = data
-        sendToParent(allImages)
+        allImages.current[1] = data
+        sendToParent(allImages.current)
     }
     const ImageData3 = (data) =>{
-        allImages[2] = data
-        sendToParent(allImages)
+        allImages.current[2] = data
+        sendToParent(allImages.current)
     }
     const ImageData4 = (data) =>{
-        allImages[3] = data
-        sendToParent(allImages)
+        allImages.current[3] = data
+        sendToParent(allImages.current)
     }
     const ImageData5 = (data) =>{
-        allImages[4] = data
-        sendToParent(allImages)
+        allImages.current[4] = data
+        sendToParent(allImages.current)
     }
     const ImageData6 = (data) =>{
-        allImages[5] = data
-        sendToParent(allImages)
+        allImages.current[5] = data
+        sendToParent(allImages.current)
     }
 
     return (

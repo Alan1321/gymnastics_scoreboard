@@ -5,36 +5,47 @@ import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { TextField } from '@mui/material';
 import Button from '@mui/material/Button';
+import { useRef, useEffect } from 'react';
 
-const InputDropDowns = ({ data, getDropDownData}) =>{
+const InputDropDowns = ({ data, getDropDownData, currentTeam}) =>{
 
-    const dataToFill = {
-        "valutLineup":[null, null, null, null, null, null],
+    const dataToFill = useRef({
+        "vaultLineup":[null, null, null, null, null, null],
         "vaultType":[null, null, null, null, null, null],
         "floorLineup":[null, null, null, null, null, null],
         "barLineup":[null, null, null, null, null, null],
         "beamLineup":[null, null, null, null, null, null]
-    }
+    })
+
+    useEffect(()=>{
+        dataToFill.current = {
+            "vaultLineup":[null, null, null, null, null, null],
+            "vaultType":[null, null, null, null, null, null],
+            "floorLineup":[null, null, null, null, null, null],
+            "barLineup":[null, null, null, null, null, null],
+            "beamLineup":[null, null, null, null, null, null]
+        }
+    }, [currentTeam])
 
     const grid1Data = (value) =>{
-        dataToFill['valutLineup'] = value
-        getDropDownData(dataToFill)
+        dataToFill['vaultLineup'] = fillData(value, dataToFill.current['vaultLineup'])
+        getDropDownData(dataToFill.current)
     }
     const vaultData = (value) =>{
         dataToFill['vaultType'] = value
-        getDropDownData(dataToFill)
+        getDropDownData(dataToFill.current)
     }
     const grid2Data = (value) =>{
-        dataToFill['floorLineup'] = value
-        getDropDownData(dataToFill)
+        dataToFill['floorLineup'] = fillData(value, dataToFill.current['floorLineup'])
+        getDropDownData(dataToFill.current)
     }
     const grid3Data = (value) =>{
-        dataToFill['barLineup'] = value
-        getDropDownData(dataToFill)
+        dataToFill['barLineup'] = fillData(value, dataToFill.current['barLineup'])
+        getDropDownData(dataToFill.current)
     }
     const grid4Data = (value) =>{
-        dataToFill['beamLineup'] = value
-        getDropDownData(dataToFill)
+        dataToFill['beamLineup'] = fillData(value, dataToFill.current['beamLineup'])
+        getDropDownData(dataToFill.current)
     }
 
     return (
@@ -190,4 +201,14 @@ const InputDropDown = ({data, getDataBack}) =>{
             </TextField>
         </div>
     )
+}
+
+const fillData = (value, dataToFill) =>{
+    console.log(value, dataToFill)
+    for(var i = 0;i<value.length;i++){
+        if(value[i]){
+            dataToFill[i] = value[i]
+        }
+    }
+    return dataToFill
 }
