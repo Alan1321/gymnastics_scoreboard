@@ -11,7 +11,7 @@ const Duel = () =>{
         <div>
             <div style={{height:'70px'}}></div>
             <div>
-                Duel Mode Screen, {currentPage}
+                <h2 style={{textAlign:"center"}}>Team1 Data for Duel Mode.</h2>
                 <InputDropDowns/>
             </div>
         </div>
