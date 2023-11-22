@@ -16,24 +16,25 @@ const InputDropDowns = ({ data, getDropDownData}) =>{
         "beamLineup":[null, null, null, null, null, null]
     }
 
-    const sendDataToParent = (data) =>{
-        getDropDownData(data)
-    }
-
     const grid1Data = (value) =>{
         dataToFill['valutLineup'] = value
+        getDropDownData(dataToFill)
     }
     const vaultData = (value) =>{
         dataToFill['vaultType'] = value
+        getDropDownData(dataToFill)
     }
     const grid2Data = (value) =>{
         dataToFill['floorLineup'] = value
+        getDropDownData(dataToFill)
     }
     const grid3Data = (value) =>{
         dataToFill['barLineup'] = value
+        getDropDownData(dataToFill)
     }
     const grid4Data = (value) =>{
         dataToFill['beamLineup'] = value
+        getDropDownData(dataToFill)
     }
 
     return (

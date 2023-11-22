@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import InputDropDowns from '../utils/InputDropDowns';
 import UploadImages from '../utils/UploadImages';
@@ -9,20 +9,52 @@ import IconButton from '@mui/material/IconButton';
 
 const Duel = () =>{
 
+    const [currentTeam, setCurrentTeam] = useState(1);
     const location = useLocation();
-    const receivedData = location.state?.data || {};
+    const receivedData = useRef(location.state?.data || {})
     const data = [1,2,3,4,5]
 
     const getDropDownData = (data) =>{
-        console.log(data)
+        if(currentTeam === 1){
+            receivedData.current['team1'] = {}
+            receivedData.current['team1']['lineUpInfo'] = data
+        }else if (currentTeam === 2){
+            receivedData.current['team2'] = {}
+            receivedData.current['team2']['lineUpInfo'] = data
+        }else if (currentTeam === 3){
+            receivedData.current['team3'] = {}
+            receivedData.current['team3']['lineUpInfo'] = data
+        }
     }
 
     const getPlayerPictures = (data) =>{
-
+        if(currentTeam === 1){
+            receivedData.current['team1'] = {}
+            receivedData.current['team1']['playerPictures'] = data
+        }else if (currentTeam === 2){
+            receivedData.current['team2'] = {}
+            receivedData.current['team2']['playerPictures'] = data
+        }else if (currentTeam === 3){
+            receivedData.current['team3'] = {}
+            receivedData.current['team3']['playerPictures'] = data
+        }
     }
 
     const getLogo = (data) =>{
-        
+        if(currentTeam === 1){
+            receivedData.current['team1'] = {}
+            receivedData.current['team1']['logo'] = data
+        }else if (currentTeam === 2){
+            receivedData.current['team2'] = {}
+            receivedData.current['team2']['logo'] = data
+        }else if (currentTeam === 3){
+            receivedData.current['team3'] = {}
+            receivedData.current['team3']['logo'] = data
+        }
+    }
+
+    const checkData = () => {
+
     }
 
     return (
@@ -36,10 +68,10 @@ const Duel = () =>{
                         <h3 style={{textAlign:"center"}}>Select Team Logo</h3>
                         <UploadImage image_url={"/upload_logo.jpg"} label={"Upload Team Logo"} sendToParent={getLogo}/>
                     </div>
-                    <UploadImages />
+                    <UploadImages sendToParent={getPlayerPictures}/>
                 </div>
                 <div style={{justifyContent:"space-around", marginTop:"1%", marginLeft:"95%"}}>
-                    <Button variant="contained" color="success" >
+                    <Button variant="contained" color="success" onClick={checkData}>
                         Next
                     </Button>
                 </div>

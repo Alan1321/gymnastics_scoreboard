@@ -1,26 +1,32 @@
 import UploadImage from './UplaodImage';
 
-const UploadImages = ({  }) =>{
+const UploadImages = ({ sendToParent }) =>{
 
     const allImages = [null, null, null, null, null, null]
 
     const ImageData1 = (data) =>{
         allImages[0] = data
+        sendToParent(allImages)
     }
     const ImageData2 = (data) =>{
         allImages[1] = data
+        sendToParent(allImages)
     }
     const ImageData3 = (data) =>{
         allImages[2] = data
+        sendToParent(allImages)
     }
     const ImageData4 = (data) =>{
         allImages[3] = data
+        sendToParent(allImages)
     }
     const ImageData5 = (data) =>{
         allImages[4] = data
+        sendToParent(allImages)
     }
     const ImageData6 = (data) =>{
         allImages[5] = data
+        sendToParent(allImages)
     }
 
     return (
