@@ -15,7 +15,7 @@ const UploadImage = ({ sendToParent, image_url, label }) => {
     }
 
     return (
-        <div style={{ height: '100%', backgroundColor: 'white', marginRight: '10px', width: '100%', minHeight:"200px" }}>
+        <div style={{ height: '250px', backgroundColor: 'white', marginRight: '10px', width: '100%' }}>
             {image ? 
             <img src={URL.createObjectURL(image)}
                 alt="No Profile"
@@ -31,7 +31,7 @@ const UploadImage = ({ sendToParent, image_url, label }) => {
                 {final_label}
             </Button>
             <input type="file" ref={inputRef} onChange={handleImageChange} style={{display:'none'}} />
-        </div>       
+        </div>    
     )
 }
 

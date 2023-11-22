@@ -80,10 +80,10 @@ const Duel = () =>{
             <div style={{height:'70px'}}></div>
             {currentTeam === 1 &&
                 <div>
-                    <div style={{display:'flex', textAlign:'center', justifyContent:"center"}}>
-`                        <h2 style={{}}>Team1 Data for Duel Mode.</h2>
-                        <div style={{justifyContent:"space-around", marginTop:"1%", marginLeft:"20%"}}>
-                            <Button variant="contained" color="success" onClick={checkData} disabled={!buttonNext}>
+                    <div style={{display:'flex', alignItems:"center", width:"100%"}}>
+                        <h2 style={{textAlign:'center', width:"50%", flexDirection:"row-reverse", display:"flex"}}>Team1 Data for Duel Mode.</h2>
+                        <div style={{marginTop:"1%", display:"flex", flexDirection:"row-reverse", width:'50%'}}>
+                            <Button variant="contained" color="success" onClick={checkData} disabled={!buttonNext} style={{marginRight:"45px"}}>
                                 Next
                             </Button>
                         </div>
@@ -96,21 +96,18 @@ const Duel = () =>{
                         </div>
                         <UploadImages sendToParent={getPlayerPictures}/>
                     </div>
-                    {/* <div style={{justifyContent:"space-around", marginTop:"1%", marginLeft:"95%"}}>
-                        <Button variant="contained" color="success" onClick={checkData} disabled={!buttonNext}>
-                            Next
-                        </Button>
-                    </div> */}
                     {modal && <CheckMeetUI  receivedData={receivedData.current['team1']} sendToParent={sendToParentCheckMeet}/> }
                 </div>
             }
             {currentTeam === 2 &&
                 <div>
-                    <h2 style={{textAlign:"center"}}>Team2 Data for Duel Mode.</h2>
-                    <div style={{justifyContent:"space-around", marginTop:"1%", marginLeft:"95%"}}>
-                        <Button variant="contained" color="success" onClick={checkData} disabled={!buttonNext}>
-                            Next
-                        </Button>
+                    <div style={{display:'flex', alignItems:"center", width:"100%"}}>
+                       <h2 style={{textAlign:'center', width:"50%", flexDirection:"row-reverse", display:"flex"}}>Team1 Data for Duel Mode.</h2>
+                        <div style={{marginTop:"1%", display:"flex", flexDirection:"row-reverse", width:'50%'}}>
+                            <Button variant="contained" color="success" onClick={checkData} disabled={!buttonNext} style={{marginRight:"45px"}}>
+                                Next
+                            </Button>
+                        </div>
                     </div>
                     <div style={{display:"flex"}}>
                         <InputDropDowns getDropDownData={getDropDownData} data={data}/>
@@ -120,11 +117,6 @@ const Duel = () =>{
                         </div>
                         <UploadImages sendToParent={getPlayerPictures}/>
                     </div>
-                    {/* <div style={{justifyContent:"space-around", marginTop:"1%", marginLeft:"95%"}}>
-                        <Button variant="contained" color="success" onClick={checkData} disabled={!buttonNext}>
-                            Next
-                        </Button>
-                    </div> */}
                     {modal && <CheckMeetUI  receivedData={receivedData.current['team2']} sendToParent={sendToParentCheckMeet2}/> }
                 </div>
             }
