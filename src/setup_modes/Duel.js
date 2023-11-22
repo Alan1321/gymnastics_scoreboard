@@ -4,57 +4,59 @@ import InputDropDowns from '../utils/InputDropDowns';
 import UploadImages from '../utils/UploadImages';
 import UploadImage from '../utils/UplaodImage';
 import Button from '@mui/material/Button';
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import IconButton from '@mui/material/IconButton';
+import Modal from "react-modal"
+import CheckMeetUI from '../checkmeet_mode/CheckMeet';
+
+Modal.setAppElement('#root');
 
 const Duel = () =>{
-
+    
+    const data = [1,2,3,4,5]
     const [currentTeam, setCurrentTeam] = useState(1);
     const location = useLocation();
     const receivedData = useRef(location.state?.data || {})
-    const data = [1,2,3,4,5]
+    const [modal, setModal] = useState(false);
+    const [buttonNext, setButtonNext] = useState(false);
 
     const getDropDownData = (data) =>{
         if(currentTeam === 1){
-            receivedData.current['team1'] = {}
             receivedData.current['team1']['lineUpInfo'] = data
         }else if (currentTeam === 2){
             receivedData.current['team2'] = {}
             receivedData.current['team2']['lineUpInfo'] = data
-        }else if (currentTeam === 3){
-            receivedData.current['team3'] = {}
-            receivedData.current['team3']['lineUpInfo'] = data
         }
+        setButtonNext(true)
     }
 
     const getPlayerPictures = (data) =>{
         if(currentTeam === 1){
-            receivedData.current['team1'] = {}
             receivedData.current['team1']['playerPictures'] = data
         }else if (currentTeam === 2){
             receivedData.current['team2'] = {}
             receivedData.current['team2']['playerPictures'] = data
-        }else if (currentTeam === 3){
-            receivedData.current['team3'] = {}
-            receivedData.current['team3']['playerPictures'] = data
         }
     }
 
     const getLogo = (data) =>{
         if(currentTeam === 1){
-            receivedData.current['team1'] = {}
             receivedData.current['team1']['logo'] = data
         }else if (currentTeam === 2){
-            receivedData.current['team2'] = {}
             receivedData.current['team2']['logo'] = data
-        }else if (currentTeam === 3){
-            receivedData.current['team3'] = {}
-            receivedData.current['team3']['logo'] = data
         }
     }
 
     const checkData = () => {
+        setModal(true)
+    }
 
+    const sendToParentCheckMeet = (data) =>{
+        if(data.fix === true){
+            setModal(false)
+        }
+        if(data.next === true){
+            setModal(false)
+            setCurrentTeam(currentTeam + 1)
+        }
     }
 
     return (
@@ -71,10 +73,11 @@ const Duel = () =>{
                     <UploadImages sendToParent={getPlayerPictures}/>
                 </div>
                 <div style={{justifyContent:"space-around", marginTop:"1%", marginLeft:"95%"}}>
-                    <Button variant="contained" color="success" onClick={checkData}>
+                    <Button variant="contained" color="success" onClick={checkData} disabled={!buttonNext}>
                         Next
                     </Button>
                 </div>
+                {modal && <CheckMeetUI  receivedData={receivedData.current['team1']} sendToParent={sendToParentCheckMeet}/> }
             </div>
         </div>
     )

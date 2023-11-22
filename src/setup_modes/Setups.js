@@ -13,8 +13,8 @@ const Setups = () =>{
     const duelHandler = () =>{
         const data = {
             "setup":"duel",
-            "team1":null,
-            "team2":null
+            "team1":{},
+            "team2":{}
         }
         history.push({
             pathname:"/duel",
@@ -24,9 +24,9 @@ const Setups = () =>{
     const triangularHandler = () =>{
         const data = {
             "setup":"duel",
-            "team1":null,
-            "team2":null,
-            "team3":null
+            "team1":{},
+            "team2":{},
+            "team3":{}
         }
         history.push({
             pathname:"/duel",
@@ -36,10 +36,10 @@ const Setups = () =>{
     const quadHandler = () =>{
         const data = {
             "setup":"duel",
-            "team1":null,
-            "team2":null,
-            "team3":null,
-            "team4":null
+            "team1":{},
+            "team2":{},
+            "team3":{},
+            "team4":{}
         }
         history.push({
             pathname:"/duel",

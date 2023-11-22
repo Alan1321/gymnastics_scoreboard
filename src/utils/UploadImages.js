@@ -33,14 +33,14 @@ const UploadImages = ({ sendToParent }) =>{
         <div style={{width:"50%", marginLeft:'10px'}}>
             <h3 style={{textAlign:"center"}}>Select Player's Pictures</h3>
             <div style={{width:"100%", marginLeft:'20px', height:"40%", display:'flex', marginBottom:"10px"}}>
-                <UploadImage sendToParent={ImageData1}/>
-                <UploadImage sendToParent={ImageData2}/>
-                <UploadImage sendToParent={ImageData3}/>
+                <UploadImage sendToParent={ImageData1} label="Add Photo for Player1 +"/>
+                <UploadImage sendToParent={ImageData2} label="Add Photo for Player2 +"/>
+                <UploadImage sendToParent={ImageData3} label="Add Photo for Player3 +"/>
             </div>
             <div style={{width:"100%", marginLeft:'20px', height:"40%", display:'flex'}}>
-                <UploadImage sendToParent={ImageData4}/>
-                <UploadImage sendToParent={ImageData5}/>
-                <UploadImage sendToParent={ImageData6}/>
+                <UploadImage sendToParent={ImageData4} label="Add Photo for Player4 +"/>
+                <UploadImage sendToParent={ImageData5} label="Add Photo for Player5 +"/>
+                <UploadImage sendToParent={ImageData6} label="Add Photo for Player6 +"/>
             </div>
         </div>
     )
