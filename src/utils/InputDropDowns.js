@@ -5,7 +5,6 @@ import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { TextField } from '@mui/material';
 import Button from '@mui/material/Button';
-import UploadImages from './UploadImages';
 
 const InputDropDowns = ({ data, getDropDownData}) =>{
 
@@ -38,40 +37,33 @@ const InputDropDowns = ({ data, getDropDownData}) =>{
     }
 
     return (
-        <div style={{display:"flex"}}>
-            <div style={{display:'flex', marginLeft:"20px"}}>
-                <div>
-                    <div style={{display:'flex'}}>
-                        <div style={{width:"170px"}}>
-                            <h4 style={{textAlign:'center'}}>Vault LineUp</h4>
-                            <InputDropDown data={data} disabled={false} label="" getDataBack={grid1Data}/>
-                        </div>
-                        <div style={{width:"170px", marginLeft:"10px"}}>
-                            <h4 style={{textAlign:'center'}}>Vault Type</h4>
-                            <InputDropDown data={data} disabled={false} label="" getDataBack={vaultData}/> 
-                        </div>
+        <div style={{display:'flex', marginLeft:"20px", width:"30%"}}>
+            <div style={{width:""}}>
+                <div style={{display:'flex'}}>
+                    <div style={{width:""}}>
+                        <h4 style={{textAlign:'center'}}>Vault LineUp</h4>
+                        <InputDropDown data={data} disabled={false} label="" getDataBack={grid1Data}/>
                     </div>
-                    <div style={{width:"170px"}}>
-                        <h4 style={{textAlign:'center'}}>Floor LineUp</h4>
-                        <InputDropDown data={data} disabled={false} label="" getDataBack={grid2Data}/>
+                    <div style={{width:"", marginLeft:"10px"}}>
+                        <h4 style={{textAlign:'center'}}>Vault Type</h4>
+                        <InputDropDown data={data} disabled={false} label="" getDataBack={vaultData}/> 
                     </div>
                 </div>
-                <div style={{marginLeft:"50px"}}>
-                    <div style={{width:"170px"}}>
-                        <h4 style={{textAlign:'center'}}>Bar LineUp</h4>
-                        <InputDropDown data={data} disabled={false} label="" getDataBack={grid3Data}/>
-                    </div>
-                    <div style={{width:"170px"}}>
-                        <h4 style={{textAlign:'center'}}>Beam LineUp</h4>
-                        <InputDropDown data={data} disabled={false} label="" getDataBack={grid4Data}/>
-                    </div>
+                <div style={{width:"50%"}}>
+                    <h4 style={{textAlign:'center'}}>Floor LineUp</h4>
+                    <InputDropDown data={data} disabled={false} label="" getDataBack={grid2Data}/>
                 </div>
             </div>
-            <div style={{width:"15%", marginLeft:'20px'}}>
-                <h3 style={{textAlign:"center"}}>Select Team Logo</h3>
-                <div style={{height:'40%', backgroundColor:"black"}}></div>
+            <div style={{marginLeft:"20px"}}>
+                <div style={{}}>
+                    <h4 style={{textAlign:'center'}}>Bar LineUp</h4>
+                    <InputDropDown data={data} disabled={false} label="" getDataBack={grid3Data}/>
+                </div>
+                <div style={{}}>
+                    <h4 style={{textAlign:'center'}}>Beam LineUp</h4>
+                    <InputDropDown data={data} disabled={false} label="" getDataBack={grid4Data}/>
+                </div>
             </div>
-            <UploadImages />
         </div>
     )
 }
