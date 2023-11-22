@@ -1,32 +1,45 @@
 import * as React from 'react';
 import { Link, Route, Switch, useHistory } from 'react-router-dom';
+import { useRef } from 'react';
 
 import "./setups.css"
 
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 
+
 const Setups = () =>{
 
     const history = useHistory();
+    const data = useRef(null);
 
     const duelHandler = () =>{
-        const data = {
-            "setup":"duel",
-            "team1":{},
-            "team2":{}
-        }
-        history.push({
-            pathname:"/duel",
-            state:{data}
-        })
+        // const data = {
+        //     "setup":"duel",
+        //     "team1":{
+        //         "teamName":"Alabama"
+        //     },
+        //     "team2":{
+        //         "teamName":"Alabama"
+        //     }
+        // }
+        // history.push({
+        //     pathname:"/duel",
+        //     state:{data}
+        // })
     }
     const triangularHandler = () =>{
         const data = {
             "setup":"triangular",
-            "team1":{},
-            "team2":{},
-            "team3":{}
+            "team1":{
+                "teamName":"Alabama"
+            },
+            "team2":{
+                "teamName":"Alabama"
+            },
+            "team3":{
+                "teamName":"Alabama"
+            }
         }
         history.push({
             pathname:"/triangular",
@@ -36,10 +49,18 @@ const Setups = () =>{
     const quadHandler = () =>{
         const data = {
             "setup":"quad",
-            "team1":{},
-            "team2":{},
-            "team3":{},
-            "team4":{}
+            "team1":{
+                "teamName":"Alabama"
+            },
+            "team2":{
+                "teamName":"Alabama"
+            },
+            "team3":{
+                "teamName":"Alabama"
+            },
+            "team4":{
+                "teamName":"Alabama"
+            }
         }
         history.push({
             pathname:"/quad",

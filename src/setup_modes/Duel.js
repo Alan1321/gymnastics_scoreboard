@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import InputDropDowns from '../utils/InputDropDowns';
 import UploadImages from '../utils/UploadImages';
@@ -7,18 +7,27 @@ import Button from '@mui/material/Button';
 import Modal from "react-modal"
 import CheckMeetUI from '../checkmeet_mode/CheckMeet';
 import { useHistory } from 'react-router-dom';
+import { fetchPlayers } from '../database/DB';
 
 Modal.setAppElement('#root');
 
 const Duel = () =>{
     
     const history = useHistory();
-    const data = [1,2,3,4,5,6,7]
+
     const [currentTeam, setCurrentTeam] = useState(1);
     const location = useLocation();
     const receivedData = useRef(location.state?.data || {})
     const [modal, setModal] = useState(false);
     const [buttonNext, setButtonNext] = useState(false);
+    
+    var data = fetchPlayers("Alabama").map((gymnast)=>gymnast.name)
+
+    if(currentTeam === 1){
+        data = fetchPlayers(receivedData.current['team1']['teamName']).map((gymnast)=>gymnast.name)
+    }else{
+        data = fetchPlayers(receivedData.current['team2']['teamName']).map((gymnast)=>gymnast.name)
+    }
 
     const getDropDownData = (data) =>{
         if(currentTeam === 1){
@@ -102,7 +111,7 @@ const Duel = () =>{
             {currentTeam === 2 &&
                 <div>
                     <div style={{display:'flex', alignItems:"center", width:"100%"}}>
-                       <h2 style={{textAlign:'center', width:"50%", flexDirection:"row-reverse", display:"flex"}}>Team1 Data for Duel Mode.</h2>
+                       <h2 style={{textAlign:'center', width:"50%", flexDirection:"row-reverse", display:"flex"}}>Team2 Data for Duel Mode.</h2>
                         <div style={{marginTop:"1%", display:"flex", flexDirection:"row-reverse", width:'50%'}}>
                             <Button variant="contained" color="success" onClick={checkData} disabled={!buttonNext} style={{marginRight:"45px"}}>
                                 Next

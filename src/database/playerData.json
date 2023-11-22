@@ -1,0 +1,293 @@
+{
+    "schools":["Alabama", "Auburn", "Florida", "LSU"],
+    "judges":["John", "Jay", "Maria", "Mandy", "Jacob", "Mary", "Jim", "Mallory", "Malcom"],
+    "vaults":[],
+    "alabama_gymnasts":[
+        {
+          "id": 1,
+          "name": "Alabama Girl 1",
+          "class": "Senior",
+          "major": "Math",
+          "gpa": 9.8
+        },
+        {
+          "id": 2,
+          "name": "Alabama Girl 2",
+          "class": "Junior",
+          "major": "English",
+          "gpa": 9.85
+        },
+        {
+          "id": 3,
+          "name": "Alabama Girl 3",
+          "class": "Sophomore",
+          "major": "Kinesiology",
+          "gpa": 9.9
+        },
+        {
+          "id": 4,
+          "name": "Alabama Girl 4",
+          "class": "Freshman",
+          "major": "Physics",
+          "gpa": 9.6
+        },
+        {
+          "id": 5,
+          "name": "Alabama Girl 5",
+          "class": "Senior",
+          "major": "CS",
+          "gpa": 9.5
+        },
+        {
+          "id": 6,
+          "name": "Alabama Girl 6",
+          "class": "Junior",
+          "major": "CPE",
+          "gpa": 9.7
+        },
+        {
+          "id": 7,
+          "name": "Alabama Girl 7",
+          "class": "Sophomore",
+          "major": "AE",
+          "gpa": 9.75
+        },
+        {
+          "id": 8,
+          "name": "Alabama Girl 8",
+          "class": "Freshman",
+          "major": "ME",
+          "gpa": 9.65
+        },
+        {
+          "id": 9,
+          "name": "Alabama Girl 9",
+          "class": "Senior",
+          "major": "EE",
+          "gpa": 9.9
+        },
+        {
+          "id": 10,
+          "name": "Alabama Girl 10",
+          "class": "Freshman",
+          "major": "CE",
+          "gpa": 9.8725
+        }
+    ],
+    "auburn_gymnasts":[
+        {
+          "id": 1,
+          "name": "Auburn Girl 1",
+          "class": "Senior",
+          "major": "Math",
+          "gpa": 9.8
+        },
+        {
+          "id": 2,
+          "name": "Auburn Girl 2",
+          "class": "Junior",
+          "major": "English",
+          "gpa": 9.85
+        },
+        {
+          "id": 3,
+          "name": "Auburn Girl 3",
+          "class": "Sophomore",
+          "major": "Kinesiology",
+          "gpa": 9.9
+        },
+        {
+          "id": 4,
+          "name": "Auburn Girl 4",
+          "class": "Freshman",
+          "major": "Physics",
+          "gpa": 9.6
+        },
+        {
+          "id": 5,
+          "name": "Auburn Girl 5",
+          "class": "Senior",
+          "major": "CS",
+          "gpa": 9.5
+        },
+        {
+          "id": 6,
+          "name": "Auburn Girl 6",
+          "class": "Junior",
+          "major": "CPE",
+          "gpa": 9.7
+        },
+        {
+          "id": 7,
+          "name": "Auburn Girl 7",
+          "class": "Sophomore",
+          "major": "AE",
+          "gpa": 9.75
+        },
+        {
+          "id": 8,
+          "name": "Auburn Girl 8",
+          "class": "Freshman",
+          "major": "ME",
+          "gpa": 9.65
+        },
+        {
+          "id": 9,
+          "name": "Auburn Girl 9",
+          "class": "Senior",
+          "major": "EE",
+          "gpa": 9.9
+        },
+        {
+          "id": 10,
+          "name": "Auburn Girl 10",
+          "class": "Freshman",
+          "major": "CE",
+          "gpa": 9.8725
+        }
+    ],
+    "florida_gymnasts":[
+        {
+          "id": 1,
+          "name": "Florida Girl 1",
+          "class": "Senior",
+          "major": "Math",
+          "gpa": 9.8
+        },
+        {
+          "id": 2,
+          "name": "Florida Girl 2",
+          "class": "Junior",
+          "major": "English",
+          "gpa": 9.85
+        },
+        {
+          "id": 3,
+          "name": "Florida Girl 3",
+          "class": "Sophomore",
+          "major": "Kinesiology",
+          "gpa": 9.9
+        },
+        {
+          "id": 4,
+          "name": "Florida Girl 4",
+          "class": "Freshman",
+          "major": "Physics",
+          "gpa": 9.6
+        },
+        {
+          "id": 5,
+          "name": "Florida Girl 5",
+          "class": "Senior",
+          "major": "CS",
+          "gpa": 9.5
+        },
+        {
+          "id": 6,
+          "name": "Florida Girl 6",
+          "class": "Junior",
+          "major": "CPE",
+          "gpa": 9.7
+        },
+        {
+          "id": 7,
+          "name": "Florida Girl 7",
+          "class": "Sophomore",
+          "major": "AE",
+          "gpa": 9.75
+        },
+        {
+          "id": 8,
+          "name": "Florida Girl 8",
+          "class": "Freshman",
+          "major": "ME",
+          "gpa": 9.65
+        },
+        {
+          "id": 9,
+          "name": "Florida Girl 9",
+          "class": "Senior",
+          "major": "EE",
+          "gpa": 9.9
+        },
+        {
+          "id": 10,
+          "name": "Florida Girl 10",
+          "class": "Freshman",
+          "major": "CE",
+          "gpa": 9.8725
+        }
+    ],
+    "lsu_gymnasts":[
+        {
+          "id": 1,
+          "name": "LSU Girl 1",
+          "class": "Senior",
+          "major": "Math",
+          "gpa": 9.8
+        },
+        {
+          "id": 2,
+          "name": "LSU Girl 2",
+          "class": "Junior",
+          "major": "English",
+          "gpa": 9.85
+        },
+        {
+          "id": 3,
+          "name": "LSU Girl 3",
+          "class": "Sophomore",
+          "major": "Kinesiology",
+          "gpa": 9.9
+        },
+        {
+          "id": 4,
+          "name": "LSU Girl 4",
+          "class": "Freshman",
+          "major": "Physics",
+          "gpa": 9.6
+        },
+        {
+          "id": 5,
+          "name": "LSU Girl 5",
+          "class": "Senior",
+          "major": "CS",
+          "gpa": 9.5
+        },
+        {
+          "id": 6,
+          "name": "LSU Girl 6",
+          "class": "Junior",
+          "major": "CPE",
+          "gpa": 9.7
+        },
+        {
+          "id": 7,
+          "name": "LSU Girl 7",
+          "class": "Sophomore",
+          "major": "AE",
+          "gpa": 9.75
+        },
+        {
+          "id": 8,
+          "name": "LSU Girl 8",
+          "class": "Freshman",
+          "major": "ME",
+          "gpa": 9.65
+        },
+        {
+          "id": 9,
+          "name": "LSU Girl 9",
+          "class": "Senior",
+          "major": "EE",
+          "gpa": 9.9
+        },
+        {
+          "id": 10,
+          "name": "LSU Girl 10",
+          "class": "Freshman",
+          "major": "CE",
+          "gpa": 9.8725
+        }
+    ]   
+}
