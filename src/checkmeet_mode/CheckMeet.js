@@ -35,10 +35,10 @@ const CheckMeetUI = ({ receivedData, sendToParent }) =>{
         }}
         >
             <div style={{justifyContent:'center', textAlign:'center'}}>
-                <h1 style={{marginBottom:"4%"}}>Check Meet Mode</h1>
-                <h3 style={{marginBottom:"5%"}}>Verifying the input data...</h3>
-                <img style={{marginTop:"-2%", height:"200px", width:"200px"}} src={process.env.PUBLIC_URL + "/blue_loading.gif"} />
-                <div style={{marginLeft:"40%", marginTop:"4%"}}>
+                <h1 style={{marginBottom:"3%"}}>Check Meet Mode</h1>
+                <h3 style={{marginBottom:"4%"}}>Verifying the input data...</h3>
+                <img style={{marginTop:"-3%", height:"200px", width:"200px"}} src={process.env.PUBLIC_URL + "/blue_loading.gif"} />
+                <div style={{marginLeft:"40%", marginTop:"3%"}}>
                     <CheckUI lineUpType={'Vault LineUp'} status={dataChecked.current[0]}/>
                     <CheckUI lineUpType={'Floor LineUp'} status={dataChecked.current[1]}/>
                     <CheckUI lineUpType={'Bar LineUp'} status={dataChecked.current[2]}/>
