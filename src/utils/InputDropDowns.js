@@ -49,7 +49,7 @@ const InputDropDowns = ({ data, getDropDownData, currentTeam}) =>{
     }
 
     return (
-        <div style={{display:'flex', marginLeft:"20px", width:"30%"}}>
+        <div style={{marginLeft:"20px", width:"30%"}}>
             <div style={{width:""}}>
                 <div style={{display:'flex'}}>
                     <div style={{width:""}}>
@@ -61,18 +61,18 @@ const InputDropDowns = ({ data, getDropDownData, currentTeam}) =>{
                         <InputDropDown data={data} disabled={false} label="" getDataBack={vaultData}/> 
                     </div>
                 </div>
-                <div style={{width:"50%"}}>
-                    <h4 style={{textAlign:'center'}}>Floor LineUp</h4>
+            </div>
+            <div style={{display:'flex', textAlign:"center"}}>
+                <div style={{marginRight:"10px"}}>
+                    <h4 style={{}}>Floor LineUp</h4>
                     <InputDropDown data={data} disabled={false} label="" getDataBack={grid2Data}/>
                 </div>
-            </div>
-            <div style={{marginLeft:"20px"}}>
-                <div style={{}}>
-                    <h4 style={{textAlign:'center'}}>Bar LineUp</h4>
+                <div style={{marginRight:"10px"}}>
+                    <h4 style={{}}>Bar LineUp</h4>
                     <InputDropDown data={data} disabled={false} label="" getDataBack={grid3Data}/>
                 </div>
-                <div style={{}}>
-                    <h4 style={{textAlign:'center'}}>Beam LineUp</h4>
+                <div style={{marginRight:"10px"}}>
+                    <h4 style={{}}>Beam LineUp</h4>
                     <InputDropDown data={data} disabled={false} label="" getDataBack={grid4Data}/>
                 </div>
             </div>
@@ -120,7 +120,7 @@ const InputDropDown = ({data, getDataBack}) =>{
     }
 
     return (
-        <div style={{}}>
+        <div style={{width:'150px'}}>
             <TextField
                 select
                 label=""
@@ -129,6 +129,7 @@ const InputDropDown = ({data, getDataBack}) =>{
                 fullWidth
                 size="small"
                 InputLabelProps={{shrink:false}}
+                style={{}}
             >
                 {data.map((item)=>(
                     <MenuItem key={item} value={item}>{item}</MenuItem>

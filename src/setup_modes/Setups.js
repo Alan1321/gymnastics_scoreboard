@@ -1,83 +1,62 @@
 import * as React from 'react';
 import { Link, Route, Switch, useHistory } from 'react-router-dom';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 
 import "./setups.css"
+import { fetchTeams } from '../database/DB';
+import SelectTeams from './SelectTeams';
 
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
+import { useScrollTrigger } from '@mui/material';
 
 
 const Setups = () =>{
 
     const history = useHistory();
-    const data = useRef(null);
+    const whichMode = useRef(null);
+    const [setupMode, setSetupMode] = useState(true);
+
 
     const duelHandler = () =>{
-        // const data = {
-        //     "setup":"duel",
-        //     "team1":{
-        //         "teamName":"Alabama"
-        //     },
-        //     "team2":{
-        //         "teamName":"Alabama"
-        //     }
-        // }
-        // history.push({
-        //     pathname:"/duel",
-        //     state:{data}
-        // })
+        if(setupMode){
+            setSetupMode(false);
+            whichMode.current = 2
+        }else{
+
+        }
     }
     const triangularHandler = () =>{
-        const data = {
-            "setup":"triangular",
-            "team1":{
-                "teamName":"Alabama"
-            },
-            "team2":{
-                "teamName":"Alabama"
-            },
-            "team3":{
-                "teamName":"Alabama"
-            }
+        if(setupMode){
+            setSetupMode(false);
+            whichMode.current = 3
+        }else{
+            
         }
-        history.push({
-            pathname:"/triangular",
-            state:{data}
-        })
     }
     const quadHandler = () =>{
-        const data = {
-            "setup":"quad",
-            "team1":{
-                "teamName":"Alabama"
-            },
-            "team2":{
-                "teamName":"Alabama"
-            },
-            "team3":{
-                "teamName":"Alabama"
-            },
-            "team4":{
-                "teamName":"Alabama"
-            }
+        if(setupMode){
+            setSetupMode(false);
+            whichMode.current = 4
+        }else{
+            
         }
-        history.push({
-            pathname:"/quad",
-            state:{data}
-        })  
     }
 
     return (
         <div>
             <div style={{height:'70px'}}></div>
-            <div className='buttons'>
+            {setupMode &&
+            <div style={{display:"flex", flexDirection:"column", justifyContent:"center", alignItems:"center"}}>
+                <h1 style={{marginBottom:"50px"}}>Select Setup</h1>
                 <Stack spacing={10} direction="row">
                     <Button size="large" variant="outlined" onClick={duelHandler}>Duel</Button>
                     <Button size="large" variant="outlined" onClick={triangularHandler}>Triangular</Button>
                     <Button size="large" variant="outlined" onClick={quadHandler}>Quad</Button>
                 </Stack>
             </div>
+            }
+            {!setupMode && <SelectTeams  selectedMode={whichMode.current} turnOff={setupMode}/>}
         </div>
     )
 }
