@@ -29,17 +29,17 @@ const Duel = () =>{
         }
     }
 
-    const data = useRef(fetchPlayers(currentTeamName()).map((gymnast)=>gymnast.name))
-    console.log(data)
-    useEffect(()=>{
-        data.current = fetchPlayers(currentTeamName()).map((gymnast)=>gymnast.name)
-    }, [currentTeam])
+    var data = null
+    // console.log(data)
+    // useEffect(()=>{
+    //     data.current = fetchPlayers(currentTeamName()).map((gymnast)=>gymnast.name)
+    // }, [currentTeam])
 
-    // if(currentTeam === 1){
-    //     data = fetchPlayers(receivedData.current['team1']['teamName']).map((gymnast)=>gymnast.name)
-    // }else{
-    //     data = fetchPlayers(receivedData.current['team2']['teamName']).map((gymnast)=>gymnast.name)
-    // }
+    if(currentTeam === 1){
+        data = fetchPlayers(receivedData.current['team1']['teamName']).map((gymnast)=>gymnast.name)
+    }else{
+        data = fetchPlayers(receivedData.current['team2']['teamName']).map((gymnast)=>gymnast.name)
+    }
 
     const getDropDownData = (data) =>{
         if(currentTeam === 1){
@@ -78,7 +78,6 @@ const Duel = () =>{
             setModal(false)
             setCurrentTeam(currentTeam + 1)
         }
-        console.log(data)
     }
 
     const sendToParentCheckMeet2 = (data) =>{
@@ -110,7 +109,7 @@ const Duel = () =>{
                         </div>
                     </div>
                     <div style={{display:"flex"}}>
-                        <InputDropDowns getDropDownData={getDropDownData} data={data.current} currentTeam={currentTeam}/>
+                        <InputDropDowns getDropDownData={getDropDownData} data={data} currentTeam={currentTeam}/>
                         <div style={{width:"15%", marginLeft:'10px', height:"40%"}}>
                             <h3 style={{textAlign:"center"}}>Select Team Logo</h3>
                             <UploadImage image_url={"/upload_logo.jpg"} label={"Upload Team Logo"} sendToParent={getLogo} currentTeam={currentTeam}/>
@@ -131,7 +130,7 @@ const Duel = () =>{
                         </div>
                     </div>
                     <div style={{display:"flex"}}>
-                        <InputDropDowns getDropDownData={getDropDownData} data={data.map}/>
+                        <InputDropDowns getDropDownData={getDropDownData} data={data} currentTeam={currentTeam}/>
                         <div style={{width:"15%", marginLeft:'10px', height:"40%"}}>
                             <h3 style={{textAlign:"center"}}>Select Team Logo</h3>
                             <UploadImage image_url={"/upload_logo.jpg"} label={"Upload Team Logo"} sendToParent={getLogo}/>

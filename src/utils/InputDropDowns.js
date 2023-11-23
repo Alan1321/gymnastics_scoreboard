@@ -120,7 +120,7 @@ const InputDropDown = ({data, getDataBack}) =>{
     }
 
     return (
-        <div style={{width:'150px'}}>
+        <div style={{width:'160px'}}>
             <TextField
                 select
                 label=""
