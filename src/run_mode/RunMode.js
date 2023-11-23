@@ -1,11 +1,21 @@
 import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
 import { useRef } from "react";
+import ArenaScreen from "./ArenaScreen";
+import ScoreKeeperScreen from "./ScoreKeeperScreen";
 
 const RunMode  = () =>{
     const location = useLocation();
-    const receivedData = useRef(location.state?.data || {})
+    console.log(location.state?.finalData)
+    const receivedData = useRef(location.state?.finalData || {})
+    console.log(receivedData)
     return (
-        <div>This is RunMode</div>
+        <div style={{width:"100%"}}>
+            <div style={{height:'70px'}}></div>
+            <div style={{display:'flex'}}>
+                <ArenaScreen receivedData={receivedData}/>
+                <ScoreKeeperScreen receivedData={receivedData}/>
+            </div>
+        </div>
     )
 }
 
