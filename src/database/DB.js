@@ -24,7 +24,7 @@ export const fetchVaults = () =>{
     return playerData.vaults
 }
 
-function getGymnastDetails(gymnastName) {
+export function getGymnastDetails(gymnastName) {
     const teamData = playerData
     // Iterate through each team
     for (const team of Object.keys(teamData)) {
