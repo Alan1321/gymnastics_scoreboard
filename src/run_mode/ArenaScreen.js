@@ -5,27 +5,27 @@ const ArenaScreen = ({ receivedData }) =>{
     
     const finalPreparedData = useRef(prepareData(receivedData.current))
 
-    useEffect(()=>{
-        console.log(receivedData)
-        if(!receivedData.current['team1']['playerPictures']){
-            receivedData.current['team1']['playerPictures'] = [null, null, null, null, null, null]
-        }
-        if(!receivedData.current['team2']['playerPictures']){
-            receivedData.current['team2']['playerPictures'] = [null, null, null, null, null, null]
-        }
-        if(receivedData.current.setup == 'triangular'){
-            if(!receivedData.current['team3']['playerPictures']){
-                receivedData.current['team3']['playerPictures'] = [null, null, null, null, null, null]
-            }
-        }else if(receivedData.current.setup == 'quad'){
-            if(!receivedData.current['team3']['playerPictures']){
-                receivedData.current['team3']['playerPictures'] = [null, null, null, null, null, null]
-            }
-            if(!receivedData.current['team4']['playerPictures']){
-                receivedData.current['team4']['playerPictures'] = [null, null, null, null, null, null]
-            }
-        }
-    },[])
+    // useEffect(()=>{
+    //     console.log(receivedData)
+    //     if(!receivedData.current['team1']['playerPictures']){
+    //         receivedData.current['team1']['playerPictures'] = [null, null, null, null, null, null]
+    //     }
+    //     if(!receivedData.current['team2']['playerPictures']){
+    //         receivedData.current['team2']['playerPictures'] = [null, null, null, null, null, null]
+    //     }
+    //     if(receivedData.current.setup == 'triangular'){
+    //         if(!receivedData.current['team3']['playerPictures']){
+    //             receivedData.current['team3']['playerPictures'] = [null, null, null, null, null, null]
+    //         }
+    //     }else if(receivedData.current.setup == 'quad'){
+    //         if(!receivedData.current['team3']['playerPictures']){
+    //             receivedData.current['team3']['playerPictures'] = [null, null, null, null, null, null]
+    //         }
+    //         if(!receivedData.current['team4']['playerPictures']){
+    //             receivedData.current['team4']['playerPictures'] = [null, null, null, null, null, null]
+    //         }
+    //     }
+    // },[])
 
     return (
         <div style={{width:"50%"}}>

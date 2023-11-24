@@ -21,6 +21,18 @@ const Duel = () =>{
     const [modal, setModal] = useState(false);
     const [buttonNext, setButtonNext] = useState(false);
     
+    useEffect(()=>{
+        if(currentTeam === 1){
+            receivedData.current['team1']['playerPictures'] = [null, null, null, null, null, null]
+            receivedData.current['team2']['logo'] = data
+
+        }else if (currentTeam === 2){
+            receivedData.current['team2']['playerPictures'] = [null, null, null, null, null, null]
+            receivedData.current['team2']['logo'] = data
+
+        }
+    },[currentTeam])
+
     const currentTeamName = () =>{
         if(currentTeam === 1){
             return receivedData.current['team1']['teamName']
@@ -30,10 +42,6 @@ const Duel = () =>{
     }
 
     var data = null
-    // console.log(data)
-    // useEffect(()=>{
-    //     data.current = fetchPlayers(currentTeamName()).map((gymnast)=>gymnast.name)
-    // }, [currentTeam])
 
     if(currentTeam === 1){
         data = fetchPlayers(receivedData.current['team1']['teamName']).map((gymnast)=>gymnast.name)
