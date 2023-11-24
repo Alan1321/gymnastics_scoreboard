@@ -23,3 +23,24 @@ export const fetchJudges = () =>{
 export const fetchVaults = () =>{
     return playerData.vaults
 }
+
+function getGymnastDetails(gymnastName) {
+    const teamData = playerData
+    // Iterate through each team
+    for (const team of Object.keys(teamData)) {
+      // Check if the team has gymnasts
+      if (team.endsWith("_gymnasts")) {
+        // Find the gymnast by name in the team
+        const gymnast = teamData[team].find((g) => g.name === gymnastName);
+  
+        // If the gymnast is found, return their details
+        if (gymnast) {
+          const { class: gymnastClass, major, gpa } = gymnast;
+          return { class: gymnastClass, major, gpa };
+        }
+      }
+    }
+  
+    // Return null if the gymnast is not found
+    return null;
+}
