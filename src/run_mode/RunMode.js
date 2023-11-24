@@ -8,16 +8,50 @@ const RunMode  = () =>{
     const location = useLocation();
     const receivedData = useRef(location.state?.finalData || {})
     const finalPreparedData = useRef(prepareData(receivedData.current))
-    const finalPreparedDataFlattened = useRef(finalPreparedData.current.flat())
+    const [currentPlayerIndex2, setCurrentPlayerIndex2] = useState([0,0]);
 
-    const [currentPlayerIndex, setCurrentPlayerIndex] = useState(0);
+    //states
+    const [playerisPlaying, setPP] = useState(true)
+    const [addScore, setaddScore] = useState(false)
+    const [flashScore, setflashScore] = useState(false)
+    //states' enable/disable functions
+    const donePlaying = () =>{
+        setPP(false)
+        setaddScore(true)
+    }
+    const scoreAdded = () =>{
+        setPP(false)
+        setaddScore(false)
+        setflashScore(true)
+    }
+    const nextPlayer = () =>{
+        setPP(true)
+        setaddScore(false)
+        setflashScore(false)
+    }
+
+    const sendToParentFromArena = (data) =>{
+        const newArray = [null,null]
+        if(currentPlayerIndex2[1] === 5){
+            newArray[0] = currentPlayerIndex2[0] + 1
+            newArray[1] = 0
+        }else{
+            newArray[0] = currentPlayerIndex2[0]
+            newArray[1] = currentPlayerIndex2[1] + 1
+        }
+        setCurrentPlayerIndex2(newArray)
+    }
+
+    const sendToParentFromScoreKeeper = (score) =>{
+
+    }
 
     return (
         <div style={{width:"100%"}}>
             <div style={{height:'70px'}}></div>
             <div style={{display:'flex'}}>
-                <ArenaScreen currentPlayer={finalPreparedData.current[currentPlayerIndex]}/>
-                <ScoreKeeperScreen currentPlayer={finalPreparedData.current[currentPlayerIndex]}/>
+                <ArenaScreen currentPlayer={finalPreparedData.current[currentPlayerIndex2[0]][currentPlayerIndex2[1]]} playerisPlaying={playerisPlaying} flashScore={flashScore} donePlaying={donePlaying} nextPlayer={nextPlayer}/>
+                <ScoreKeeperScreen sendToParentFromScoreKeeper={sendToParentFromScoreKeeper} currentPlayerIndex={currentPlayerIndex2} finalPreparedData={finalPreparedData.current}/>
             </div>
         </div>
     )
