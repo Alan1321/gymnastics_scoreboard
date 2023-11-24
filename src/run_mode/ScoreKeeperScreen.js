@@ -8,11 +8,12 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import AddScore from './AddScore';
 import { useState } from 'react';
+import Button from '@mui/material/Button';
+import { TextField } from '@mui/material';
 
-const ScoreKeeperScreen = ({ sendToParentFromScoreKeeper, currentPlayerIndex, finalPreparedData }) =>{
+const ScoreKeeperScreen = ({ addScore, scoreAdded, finalPreparedData }) =>{
 
-    const [addScoreState, setAddScore] = useState(false);
-    const currentPlayer = finalPreparedData[currentPlayerIndex[0]][currentPlayerIndex[1]]
+    const [inputValue, setInputValue] = useState('');
 
     return (
         <div style={{width:"50%"}}>
@@ -23,7 +24,28 @@ const ScoreKeeperScreen = ({ sendToParentFromScoreKeeper, currentPlayerIndex, fi
                 <div style={{marginLeft:"10px"}}>
                     <h4>Team Meet Score Table</h4>
                 </div>
-                <AddScore sendToParent={sendToParentFromScoreKeeper} addScoreState={addScoreState}/>
+                {addScore &&
+                    <div style={{width:"100%", justifyContent:"center", alignItems:"center", display:'flex', flexDirection:"column"}}>
+                    <div style={{border:"1px solid grey", width:"25%", textAlign:"center"}}>
+                        <h3>Add Her Score</h3>
+                    </div>
+                    <div style={{width:"25%"}}>
+                        <TextField
+                        id="outlined-number"
+                        label=""
+                        type="number"
+                        fullWidth
+                        InputLabelProps={{
+                            shrink: false,
+                        }}
+                        onChange={(e)=>setInputValue(e.target.value)}
+                        />
+                    </div>
+                    <Button variant="contained" color="success" onClick={()=>scoreAdded(inputValue)} disabled={false} style={{width:'25%', border:'1px solid grey', marginTop:"5px"}}>
+                        Submit
+                    </Button>
+                </div>
+                }
             </div>
         </div>
     )

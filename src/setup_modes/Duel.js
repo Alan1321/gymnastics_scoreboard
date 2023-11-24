@@ -79,7 +79,7 @@ const Duel = () =>{
     }
 
     const sendToParentCheckMeet = (data) =>{
-        console.log(data)
+        // console.log(data)
         if(data.fix === true){
             setModal(false)
         }
@@ -96,7 +96,7 @@ const Duel = () =>{
         if(data.next === true){
             setModal(false)
             const finalData = receivedData.current
-            console.log("finalData", finalData)
+            // console.log("finalData", finalData)
             history.push({
                 pathname:'/run',
                 state:{finalData}

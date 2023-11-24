@@ -31,7 +31,8 @@ const AddScore = ({ sendToParent, addScoreState }) =>{
                 <Button variant="contained" color="success" onClick={scoreAdded} disabled={false} style={{width:'25%', border:'1px solid grey', marginTop:"5px"}}>
                     Submit
                 </Button>
-            </div>}
+            </div>
+            }
         </div>
     )
 }

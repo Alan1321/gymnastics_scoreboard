@@ -35,17 +35,17 @@ const ArenaScreen = ({ currentPlayer, playerisPlaying, flashScore, donePlaying, 
                 <div style={{display:"flex", width:"100%"}}>
                     <div style={{display:"flex", flexDirection:"column", width:"50%", justifyContent:"center", alignItems:"center"}}>
                         <img src={process.env.PUBLIC_URL + "/backflip.gif"} style={{height:"150px", width:"65%"}} />
-                        <Button variant="contained" color="success" onClick={donePlaying} disabled={false} style={{width:"65%"}}>
+                        <Button variant="contained" color="success" onClick={()=>donePlaying()} disabled={false} style={{width:"65%"}}>
                             Add her Score!!
                         </Button>
                     </div>
-                    <Timer timerComplete={donePlaying} />
+                    <Timer timerComplete={()=>donePlaying()} />
                 </div>
                 }
                 {flashScore && 
                 <div style={{display:"flex", flexDirection:"column", width:"100%", justifyContent:"center", alignItems:"center"}}>
                     <img src={process.env.PUBLIC_URL + "/new_score2.gif"} style={{height:"100px", width:"50%"}} />
-                    <Button variant="contained" color="success" onClick={nextPlayer} disabled={false} style={{width:'50%'}}>
+                    <Button variant="contained" color="success" onClick={()=>nextPlayer()} disabled={false} style={{width:'50%'}}>
                         Great!! Move to Next Player
                     </Button>
                 </div>}

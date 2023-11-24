@@ -19,31 +19,28 @@ const RunMode  = () =>{
         setPP(false)
         setaddScore(true)
     }
-    const scoreAdded = () =>{
+    const scoreAdded = (data) =>{
         setPP(false)
         setaddScore(false)
         setflashScore(true)
+        //TODO: add score to the main data table
+        finalPreparedData.current[currentPlayerIndex2[0]][currentPlayerIndex2[1]]['score'] = data
+        console.log(finalPreparedData)
     }
     const nextPlayer = () =>{
         setPP(true)
         setaddScore(false)
         setflashScore(false)
-    }
 
-    const sendToParentFromArena = (data) =>{
-        const newArray = [null,null]
+        var indexArray = [0,0]
         if(currentPlayerIndex2[1] === 5){
-            newArray[0] = currentPlayerIndex2[0] + 1
-            newArray[1] = 0
+            indexArray[0] = currentPlayerIndex2[0] + 1
+            indexArray[1] = 0
         }else{
-            newArray[0] = currentPlayerIndex2[0]
-            newArray[1] = currentPlayerIndex2[1] + 1
+            indexArray[0] = currentPlayerIndex2[0]
+            indexArray[1] = currentPlayerIndex2[1] + 1
         }
-        setCurrentPlayerIndex2(newArray)
-    }
-
-    const sendToParentFromScoreKeeper = (score) =>{
-
+        setCurrentPlayerIndex2(indexArray)
     }
 
     return (
@@ -51,7 +48,7 @@ const RunMode  = () =>{
             <div style={{height:'70px'}}></div>
             <div style={{display:'flex'}}>
                 <ArenaScreen currentPlayer={finalPreparedData.current[currentPlayerIndex2[0]][currentPlayerIndex2[1]]} playerisPlaying={playerisPlaying} flashScore={flashScore} donePlaying={donePlaying} nextPlayer={nextPlayer}/>
-                <ScoreKeeperScreen sendToParentFromScoreKeeper={sendToParentFromScoreKeeper} currentPlayerIndex={currentPlayerIndex2} finalPreparedData={finalPreparedData.current}/>
+                <ScoreKeeperScreen finalPreparedData={finalPreparedData.current} addScore={addScore} scoreAdded={scoreAdded}/>
             </div>
         </div>
     )
@@ -61,7 +58,7 @@ export default RunMode
 
 const prepareData = (data) =>{
 
-    console.log(data)
+    // console.log(data)
     const finalData = []
 
     const totalTeam = () =>{
@@ -158,13 +155,13 @@ const prepareData = (data) =>{
         finalData.push(team4Floor)
     }
 
-    console.log(finalData)
+    // console.log(finalData)
     return finalData
 
 }
 
 const makeJsonofArray = (performanceName, lineup, playerPictures, teamName, teamNumberasString, vaultInfo) =>{
-    console.log(lineup)
+    // console.log(lineup)
     const data = []
     for(var i = 0;i<lineup.length;i++){
         const other_info = getGymnastDetails(lineup[i])
@@ -184,7 +181,7 @@ const makeJsonofArray = (performanceName, lineup, playerPictures, teamName, team
 }
 
 const getPicture = (playerPictures, playerName) =>{
-    console.log(playerName)
+    // console.log(playerName)
     const index = parseInt(playerName[playerName.length - 1]) - 1
     return playerPictures[index]
 }
