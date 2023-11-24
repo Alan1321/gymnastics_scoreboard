@@ -1,7 +1,7 @@
 {
     "schools":["Alabama", "Auburn", "Florida", "LSU"],
     "judges":["John", "Jay", "Maria", "Mandy", "Jacob", "Mary", "Jim", "Mallory", "Malcom"],
-    "vaults":[],
+    "vaults":["Tsuk Layout", "Tsuk Tuck", "Kincaid", "Garbarino", "Cuervo Layout"],
     "alabama_gymnasts":[
         {
           "id": 1,

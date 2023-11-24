@@ -6,6 +6,7 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { TextField } from '@mui/material';
 import Button from '@mui/material/Button';
 import { useRef, useEffect } from 'react';
+import { fetchVaults } from '../database/DB';
 
 const InputDropDowns = ({ data, getDropDownData, currentTeam}) =>{
 
@@ -14,7 +15,7 @@ const InputDropDowns = ({ data, getDropDownData, currentTeam}) =>{
         "vaultType":[null, null, null, null, null, null],
         "floorLineup":[null, null, null, null, null, null],
         "barLineup":[null, null, null, null, null, null],
-        "beamLineup":[null, null, null, null, null, null]
+        "beamLineup":[null, null, null, null, null, null],
     })
 
     useEffect(()=>{
@@ -23,7 +24,7 @@ const InputDropDowns = ({ data, getDropDownData, currentTeam}) =>{
             "vaultType":[null, null, null, null, null, null],
             "floorLineup":[null, null, null, null, null, null],
             "barLineup":[null, null, null, null, null, null],
-            "beamLineup":[null, null, null, null, null, null]
+            "beamLineup":[null, null, null, null, null, null],
         }
     }, [currentTeam])
 
@@ -32,7 +33,7 @@ const InputDropDowns = ({ data, getDropDownData, currentTeam}) =>{
         getDropDownData(dataToFill.current)
     }
     const vaultData = (value) =>{
-        dataToFill['vaultType'] = value
+        dataToFill['vaultType'] = fillData(value, dataToFill.current['vaultType'])
         getDropDownData(dataToFill.current)
     }
     const grid2Data = (value) =>{
@@ -58,7 +59,7 @@ const InputDropDowns = ({ data, getDropDownData, currentTeam}) =>{
                     </div>
                     <div style={{width:"", marginLeft:"10px"}}>
                         <h4 style={{textAlign:'center'}}>Vault Type</h4>
-                        <InputDropDown data={data} disabled={false} label="" getDataBack={vaultData}/> 
+                        <InputDropDown data={fetchVaults()} disabled={false} label="" getDataBack={vaultData}/> 
                     </div>
                 </div>
             </div>

@@ -65,7 +65,7 @@ const SelectTeams = ({ selectedMode, turnOff }) =>{
             }) 
         }else if(selectedMode === 3){
             data = {
-                "setup":"duel",
+                "setup":"triangular",
                 "team1":{
                     "teamName":selectedTeams.current[0]
                 },
@@ -82,7 +82,7 @@ const SelectTeams = ({ selectedMode, turnOff }) =>{
             })
         }else if(selectedMode === 4){
             data = {
-                "setup":"duel",
+                "setup":"quad",
                 "team1":{
                     "teamName":selectedTeams.current[0]
                 },
