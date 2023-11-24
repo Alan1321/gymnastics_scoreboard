@@ -48,7 +48,7 @@ const RunMode  = () =>{
             <div style={{height:'70px'}}></div>
             <div style={{display:'flex'}}>
                 <ArenaScreen currentPlayer={finalPreparedData.current[currentPlayerIndex2[0]][currentPlayerIndex2[1]]} playerisPlaying={playerisPlaying} flashScore={flashScore} donePlaying={donePlaying} nextPlayer={nextPlayer}/>
-                <ScoreKeeperScreen finalPreparedData={finalPreparedData.current} addScore={addScore} scoreAdded={scoreAdded}/>
+                <ScoreKeeperScreen finalPreparedData={finalPreparedData.current} addScore={addScore} scoreAdded={scoreAdded} mode={receivedData.current['setup']}/>
             </div>
         </div>
     )
@@ -58,7 +58,7 @@ export default RunMode
 
 const prepareData = (data) =>{
 
-    // console.log(data)
+    console.log(data)
     const finalData = []
 
     const totalTeam = () =>{
