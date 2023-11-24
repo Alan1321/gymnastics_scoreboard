@@ -1,7 +1,8 @@
 import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import ScoreKeeperScreen from "./ScoreKeeperScreen";
 import { getGymnastDetails } from "../database/DB";
+import ArenaScreen from "./ArenaScreen";
 
 const RunMode  = () =>{
     const location = useLocation();
@@ -9,19 +10,14 @@ const RunMode  = () =>{
     const finalPreparedData = useRef(prepareData(receivedData.current))
     const finalPreparedDataFlattened = useRef(finalPreparedData.current.flat())
 
+    const [currentPlayerIndex, setCurrentPlayerIndex] = useState(0);
+
     return (
         <div style={{width:"100%"}}>
             <div style={{height:'70px'}}></div>
             <div style={{display:'flex'}}>
-                <div style={{width:"50%"}}>
-                    <div style={{border:"1px solid grey"}}>
-                        <h2 style={{textAlign:"center"}}>Arena Screen</h2>
-                    </div>
-                    <div style={{minHeight:"75vh", border:"1px solid grey", borderTop:"none", borderLeft:'none', borderBottom:"none"}}>
-
-                    </div>
-                </div>
-                <ScoreKeeperScreen />
+                <ArenaScreen currentPlayer={finalPreparedData.current[currentPlayerIndex]}/>
+                <ScoreKeeperScreen currentPlayer={finalPreparedData.current[currentPlayerIndex]}/>
             </div>
         </div>
     )

@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react"
 
-const ArenaScreen = ({ receivedData }) =>{
+const ArenaScreen = ({ currentPlayer }) =>{
 
     return (
         <div style={{width:"50%"}}>
