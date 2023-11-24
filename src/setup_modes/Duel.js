@@ -24,11 +24,11 @@ const Duel = () =>{
     useEffect(()=>{
         if(currentTeam === 1){
             receivedData.current['team1']['playerPictures'] = [null, null, null, null, null, null]
-            receivedData.current['team2']['logo'] = data
+            receivedData.current['team1']['logo'] = null
 
         }else if (currentTeam === 2){
             receivedData.current['team2']['playerPictures'] = [null, null, null, null, null, null]
-            receivedData.current['team2']['logo'] = data
+            receivedData.current['team2']['logo'] = null
 
         }
     },[currentTeam])
@@ -79,6 +79,7 @@ const Duel = () =>{
     }
 
     const sendToParentCheckMeet = (data) =>{
+        console.log(data)
         if(data.fix === true){
             setModal(false)
         }

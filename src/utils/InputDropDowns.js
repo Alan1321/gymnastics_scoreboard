@@ -206,7 +206,6 @@ const InputDropDown = ({data, getDataBack}) =>{
 }
 
 const fillData = (value, dataToFill) =>{
-    console.log(value, dataToFill)
     for(var i = 0;i<value.length;i++){
         if(value[i]){
             dataToFill[i] = value[i]

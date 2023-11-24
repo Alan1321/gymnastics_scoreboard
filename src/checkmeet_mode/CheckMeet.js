@@ -66,7 +66,6 @@ const CheckUI = ({ lineUpType, status }) =>{
 }
 
 const CheckMeet = (data) => {
-    console.log(data)
     data = data['lineUpInfo']
     var checks = [false, false, false, false]
     checks = checkVaultLineUp(data, checks)
