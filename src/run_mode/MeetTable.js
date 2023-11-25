@@ -1,10 +1,31 @@
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
+import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import { styled } from '@mui/material/styles';
+
+const StyledTableCell = styled(TableCell)(({ theme }) => ({
+    [`&.${tableCellClasses.head}`]: {
+      backgroundColor: theme.palette.common.black,
+      color: theme.palette.common.white,
+    },
+    [`&.${tableCellClasses.body}`]: {
+      fontSize: 14,
+    },
+}));
+
+const StyledTableRow = styled(TableRow)(({ theme }) => ({
+    '&:nth-of-type(odd)': {
+        backgroundColor: theme.palette.action.hover,
+    },
+    // hide last border
+    '&:last-child td, &:last-child th': {
+        border: 0,
+    },
+}));
 
 const MeetTable = ({ mode, data, ranking }) =>{
     const meetArray = makeInitialMeetArray(mode)
@@ -20,41 +41,41 @@ const MeetTable = ({ mode, data, ranking }) =>{
                     <TableRow>
                         {ranking ? 
                             <>
-                                <TableCell>Ranking</TableCell>
-                                <TableCell align='right'>Teams</TableCell>    
+                                <StyledTableCell>Ranking</StyledTableCell>
+                                <StyledTableCell align='right'>Teams</StyledTableCell>    
                             </>
                             :
-                            <TableCell>Teams</TableCell>
+                            <StyledTableCell>Teams</StyledTableCell>
                         }
-                        <TableCell align="right">Vault</TableCell>
-                        <TableCell align="right">Bar</TableCell>
-                        <TableCell align="right">Beam</TableCell>
-                        <TableCell align="right">Floor</TableCell>
+                        <StyledTableCell align="right">Vault</StyledTableCell>
+                        <StyledTableCell align="right">Bar</StyledTableCell>
+                        <StyledTableCell align="right">Beam</StyledTableCell>
+                        <StyledTableCell align="right">Floor</StyledTableCell>
                     </TableRow>
                     </TableHead>
                     <TableBody>
                     {rows.map((row) => (
-                        <TableRow
+                        <StyledTableRow
                         key={row.name}
                         sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                         >
                         {ranking ? 
                             <>
-                                <TableCell component="th" scope="row">
+                                <StyledTableCell component="th" scope="row">
                                     {row.ranking}
-                                </TableCell>
-                                <TableCell align="right">{row.name}</TableCell> 
+                                </StyledTableCell>
+                                <StyledTableCell align="right">{row.name}</StyledTableCell> 
                             </>
                             :
-                            <TableCell component="th" scope="row">
+                            <StyledTableCell component="th" scope="row">
                                 {row.name}
-                            </TableCell>
+                            </StyledTableCell>
                         }
-                        <TableCell align="right">{row.vault}</TableCell>
-                        <TableCell align="right">{row.bar}</TableCell>
-                        <TableCell align="right">{row.beam}</TableCell>
-                        <TableCell align="right">{row.floor}</TableCell>
-                        </TableRow>
+                        <StyledTableCell align="right">{row.vault}</StyledTableCell>
+                        <StyledTableCell align="right">{row.bar}</StyledTableCell>
+                        <StyledTableCell align="right">{row.beam}</StyledTableCell>
+                        <StyledTableCell align="right">{row.floor}</StyledTableCell>
+                        </StyledTableRow>
                     ))}
                     </TableBody>
                 </Table>
@@ -91,7 +112,6 @@ const makeJson = (filledArray) =>{
         ranking: teamsWithTotalScores.filter(t => t.totalScore > team.totalScore).length + 1,
     }));
     
-    console.log(rankedTeams);
 
     return rankedTeams
 }
