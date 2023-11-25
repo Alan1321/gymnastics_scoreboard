@@ -1,16 +1,70 @@
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
+
 const MeetTable = ({ mode, data }) =>{
     const meetArray = makeInitialMeetArray(mode)
     const filledArray = updateMeetArray(meetArray, data)
-    console.log("filledArray>>>",filledArray)
-    console.log(data)
+    const rows = makeJson(filledArray)
+
     return (
-        <div style={{marginLeft:"10px"}}>
-            <h4>Team Meet Score Table</h4>
+        <div style={{marginLeft:"10px", width:'95%', marginBottom:"10px"}}>
+            <h4 style={{textAlign:"center"}}>Team Meet Score Table</h4>
+            <TableContainer component={Paper}>
+                <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                    <TableHead>
+                    <TableRow>
+                        <TableCell>Teams</TableCell>
+                        <TableCell align="right">Vault</TableCell>
+                        <TableCell align="right">Bar</TableCell>
+                        <TableCell align="right">Beam</TableCell>
+                        <TableCell align="right">Floor</TableCell>
+                    </TableRow>
+                    </TableHead>
+                    <TableBody>
+                    {rows.map((row) => (
+                        <TableRow
+                        key={row.name}
+                        sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                        >
+                        <TableCell component="th" scope="row">
+                            {row.name}
+                        </TableCell>
+                        <TableCell align="right">{row.vault}</TableCell>
+                        <TableCell align="right">{row.bar}</TableCell>
+                        <TableCell align="right">{row.beam}</TableCell>
+                        <TableCell align="right">{row.floor}</TableCell>
+                        </TableRow>
+                    ))}
+                    </TableBody>
+                </Table>
+            </TableContainer>
         </div>
     )
 }
 
 export default MeetTable
+
+const makeJson = (filledArray) =>{
+    const team = ['Team1', 'Team2', 'Team3', 'Team4']
+    const data = []
+
+    for (let i = 0; i < filledArray.length; i++) {
+        data.push({
+            name:team[i],
+            vault:filledArray[i][0],
+            bar:filledArray[i][1],
+            beam:filledArray[i][2],
+            floor:filledArray[i][3]
+        })
+    }
+
+    return data
+}
 
 const makeInitialMeetArray = (mode) =>{
     let numRows, numColumns;

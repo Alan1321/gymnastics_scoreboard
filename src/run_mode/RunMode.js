@@ -9,6 +9,9 @@ const RunMode  = () =>{
     const receivedData = useRef(location.state?.finalData || {})
     const finalPreparedData = useRef(prepareData(receivedData.current))
     const [currentPlayerIndex2, setCurrentPlayerIndex2] = useState([0,0]);
+    const [dataAsState, setDataasState] = useState(finalPreparedData.current)
+
+    console.log(receivedData.current)
 
     //states
     const [playerisPlaying, setPP] = useState(true)
@@ -25,7 +28,7 @@ const RunMode  = () =>{
         setflashScore(true)
         //TODO: add score to the main data table
         finalPreparedData.current[currentPlayerIndex2[0]][currentPlayerIndex2[1]]['score'] = data
-        console.log(finalPreparedData)
+        setDataasState(finalPreparedData.current)
     }
     const nextPlayer = () =>{
         setPP(true)
@@ -48,7 +51,7 @@ const RunMode  = () =>{
             <div style={{height:'70px'}}></div>
             <div style={{display:'flex'}}>
                 <ArenaScreen currentPlayer={finalPreparedData.current[currentPlayerIndex2[0]][currentPlayerIndex2[1]]} playerisPlaying={playerisPlaying} flashScore={flashScore} donePlaying={donePlaying} nextPlayer={nextPlayer}/>
-                <ScoreKeeperScreen finalPreparedData={finalPreparedData.current} addScore={addScore} scoreAdded={scoreAdded} mode={receivedData.current['setup']}/>
+                <ScoreKeeperScreen finalPreparedData={finalPreparedData.current} addScore={addScore} scoreAdded={scoreAdded} mode={receivedData.current['setup']} dataAsState={dataAsState}/>
             </div>
         </div>
     )
@@ -58,7 +61,6 @@ export default RunMode
 
 const prepareData = (data) =>{
 
-    console.log(data)
     const finalData = []
 
     const totalTeam = () =>{

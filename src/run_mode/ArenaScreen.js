@@ -11,7 +11,7 @@ const ArenaScreen = ({ currentPlayer, playerisPlaying, flashScore, donePlaying, 
         "floor":70,
         "Vault":20
     }
-
+    console.log(currentPlayer)
     return (
         <div style={{width:"50%"}}>
             <div style={{border:"1px solid grey"}}>
@@ -19,7 +19,7 @@ const ArenaScreen = ({ currentPlayer, playerisPlaying, flashScore, donePlaying, 
             </div>
             <div style={{minHeight:"75vh", marginLeft:"20px", marginTop:"20px", border:'1px solid grey', borderTop:"none", borderLeft:"none", borderBottom:'none'}}>
                 <div style={{display:"flex"}}>
-                    <ShowImage file={null}/>
+                    <ShowImage file={currentPlayer['playerPicture']}/>
                     <ul>
                         <li>Player Name: {currentPlayer['playerName']}</li>
                         <li>Team Name: {currentPlayer['teamName']}</li>
