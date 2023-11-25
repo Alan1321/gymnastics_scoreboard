@@ -5,6 +5,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Button from '@mui/material/Button';
 import Swal from 'sweetalert2'
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import SelectJudges from "./SelectJudges";
 
 const SelectTeams = ({ selectedMode, turnOff }) =>{
 
@@ -16,6 +17,7 @@ const SelectTeams = ({ selectedMode, turnOff }) =>{
     const selectedTeams = useRef(nullArray)
     const [buttonNext, setButtonNext] = useState(false);
     const history = useHistory();
+    const selectedJudges = useRef([null, null,null, null,null, null,null, null])
 
     const handler1 = (e) =>{
         selectedTeams.current[0] = e.target.value
@@ -34,12 +36,20 @@ const SelectTeams = ({ selectedMode, turnOff }) =>{
         setButtonNext(true)
     }
 
+    const getJudgesData = (data) =>{
+        selectedJudges.current = data
+        setButtonNext(true)
+    }
+
     const checkData = () =>{
-        const duplicate = hasDuplicates(selectedTeams.current)
-        if(duplicate){
+        const teamDuplicate = hasDuplicates(selectedTeams.current)
+        
+        const checkJudgesResult = checkJudges(selectedJudges.current)
+
+        if(teamDuplicate || !checkJudgesResult){
             Swal.fire({
                 title: 'Error!',
-                text: 'Duplicate Team Found',
+                text: 'Duplicate Team/Judges Found or Select all Judges (null not accepted)',
                 icon: 'error',
                 confirmButtonText: 'Reselect Teams'
             })
@@ -113,7 +123,7 @@ const SelectTeams = ({ selectedMode, turnOff }) =>{
                     </Button>
                 </div>
             </div>
-            <div style={{display:"flex", width:"100%", justifyContent:"space-evenly", height:"50vh", alignItems:"center"}}>
+            <div style={{display:"flex", width:"100%", justifyContent:"space-evenly"}}>
                 <div style={{width:width}}>
                     <h3 style={{textAlign:"center", color:color}}>Team1</h3>
                     <TextField
@@ -185,6 +195,7 @@ const SelectTeams = ({ selectedMode, turnOff }) =>{
                     </TextField>
                 </div>}
             </div>
+            <SelectJudges getJudgesData={getJudgesData}/>
         </div>
     )
 
@@ -206,3 +217,19 @@ function hasDuplicates(array) {
   
     return false; // No duplicates found
 }
+
+function checkJudges(judges){
+    // Check for null values
+    if (judges.includes(null)) {
+      return false
+    }
+  
+    // Check for duplicates
+    const uniqueJudges = new Set(judges);
+    if (uniqueJudges.size !== judges.length) {
+      return false
+    }
+  
+    // If no errors found
+    return true
+};
