@@ -3,6 +3,7 @@ import { useRef, useState } from "react";
 import ScoreKeeperScreen from "./ScoreKeeperScreen";
 import { getGymnastDetails } from "../database/DB";
 import ArenaScreen from "./ArenaScreen";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 const RunMode  = () =>{
     const location = useLocation();
@@ -10,8 +11,9 @@ const RunMode  = () =>{
     const finalPreparedData = useRef(prepareData(receivedData.current))
     const [currentPlayerIndex2, setCurrentPlayerIndex2] = useState([0,0]);
     const [dataAsState, setDataasState] = useState(finalPreparedData.current)
-
-    console.log(receivedData.current)
+    const count = useRef(1);
+    const history = useHistory()
+    const total = finalPreparedData.current.length * 6
 
     //states
     const [playerisPlaying, setPP] = useState(true)
@@ -22,6 +24,7 @@ const RunMode  = () =>{
         setPP(false)
         setaddScore(true)
     }
+    // console.log('count', count)
     const scoreAdded = (data) =>{
         setPP(false)
         setaddScore(false)
@@ -34,7 +37,15 @@ const RunMode  = () =>{
         setPP(true)
         setaddScore(false)
         setflashScore(false)
-
+        console.log("count", count, "total", total)
+        if(count.current >= total){
+            const data = finalPreparedData.current
+            history.push({
+                pathname:"/postmeet",
+                state:{data}
+            })
+        }
+        count.current += 1
         var indexArray = [0,0]
         if(currentPlayerIndex2[1] === 5){
             indexArray[0] = currentPlayerIndex2[0] + 1

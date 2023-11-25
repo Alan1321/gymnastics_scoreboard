@@ -11,7 +11,7 @@ const ArenaScreen = ({ currentPlayer, playerisPlaying, flashScore, donePlaying, 
         "floor":70,
         "Vault":20
     }
-    console.log(currentPlayer)
+
     return (
         <div style={{width:"50%"}}>
             <div style={{border:"1px solid grey"}}>
