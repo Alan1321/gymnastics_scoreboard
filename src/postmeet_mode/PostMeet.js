@@ -29,7 +29,7 @@ const PostMeet = () =>{
 
     return (
         <div style={{width:"100%"}}>
-            <div style={{height:'70px'}}></div>
+        <div style={{height:'70px'}}></div>
             <div style={{display:'flex', alignItems:"center", width:"100%"}}>
                         <h2 style={{textAlign:'center', width:"60%", flexDirection:"row-reverse", display:"flex"}}>PostMeet Mode</h2>
                         <div style={{marginTop:"1%", display:"flex", flexDirection:"row-reverse", width:'50%'}}>
@@ -37,7 +37,8 @@ const PostMeet = () =>{
                                 Download Data
                             </Button>
                         </div>
-                    </div>
+            </div>
+            <h4 style={{textAlign:'center', width:"60%", flexDirection:"row-reverse", display:"flex", marginLeft:"5%"}}>'Note: Lowest Apparatus Score Dropped while calculating team rank -- runMode requiremen--> H'</h4>
             <div style={{}}>
                 <MeetTable  data={data} mode={mode} ranking={true}/>
                 <PlayerTable data={data} mode={mode} ranking={true}/>
