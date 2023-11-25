@@ -53,7 +53,7 @@ const Triangular = () =>{
     }else if(currentTeam === 2){
         data = fetchPlayers(receivedData.current['team2']['teamName']).map((gymnast)=>gymnast.name)
     }else if(currentTeam === 3){
-        data = fetchPlayers(receivedData.current['team2']['teamName']).map((gymnast)=>gymnast.name)
+        data = fetchPlayers(receivedData.current['team3']['teamName']).map((gymnast)=>gymnast.name)
     }
 
     const getDropDownData = (data) =>{

@@ -206,7 +206,13 @@ export default SelectTeams
 function hasDuplicates(array) {
 
     const seen = {};
-  
+
+    for (const element of array) {
+        if (element === null) {
+          return true; // Found a null value
+        }
+    }
+    
     for (const element of array) {
       if (seen[element]) {
         return true; // Found a duplicate
