@@ -14,7 +14,7 @@ const ScoreKeeperScreen = ({ addScore, scoreAdded, finalPreparedData, mode, data
                 <h2 style={{textAlign:"center"}}>ScoreKeeper Screen</h2>
             </div>
             <div style={{minHeight:"75vh", marginTop:"20px", border:'1px solid grey', borderTop:"none", borderRight:"none", borderBottom:'none'}}>
-                <MeetTable  data={finalPreparedData} mode={mode}/>
+                <MeetTable  data={finalPreparedData} mode={mode} style={{marginLeft:"10px", width:'95%', marginBottom:"10px"}}/>
                 {addScore &&
                     <div style={{width:"100%", justifyContent:"center", alignItems:"center", display:'flex', flexDirection:"column"}}>
                         <div style={{border:"1px solid grey", width:"25%", textAlign:"center"}}>

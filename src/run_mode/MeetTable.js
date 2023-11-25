@@ -6,19 +6,26 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
-const MeetTable = ({ mode, data }) =>{
+const MeetTable = ({ mode, data, ranking }) =>{
     const meetArray = makeInitialMeetArray(mode)
     const filledArray = updateMeetArray(meetArray, data)
     const rows = makeJson(filledArray)
 
     return (
-        <div style={{marginLeft:"10px", width:'95%', marginBottom:"10px"}}>
+        <div style={{}}>
             <h4 style={{textAlign:"center"}}>Team Meet Score Table</h4>
             <TableContainer component={Paper}>
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
                     <TableHead>
                     <TableRow>
-                        <TableCell>Teams</TableCell>
+                        {ranking ? 
+                            <>
+                                <TableCell>Ranking</TableCell>
+                                <TableCell align='right'>Teams</TableCell>    
+                            </>
+                            :
+                            <TableCell>Teams</TableCell>
+                        }
                         <TableCell align="right">Vault</TableCell>
                         <TableCell align="right">Bar</TableCell>
                         <TableCell align="right">Beam</TableCell>
@@ -31,9 +38,18 @@ const MeetTable = ({ mode, data }) =>{
                         key={row.name}
                         sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                         >
-                        <TableCell component="th" scope="row">
-                            {row.name}
-                        </TableCell>
+                        {ranking ? 
+                            <>
+                                <TableCell component="th" scope="row">
+                                    {row.ranking}
+                                </TableCell>
+                                <TableCell align="right">{row.name}</TableCell> 
+                            </>
+                            :
+                            <TableCell component="th" scope="row">
+                                {row.name}
+                            </TableCell>
+                        }
                         <TableCell align="right">{row.vault}</TableCell>
                         <TableCell align="right">{row.bar}</TableCell>
                         <TableCell align="right">{row.beam}</TableCell>
@@ -63,7 +79,21 @@ const makeJson = (filledArray) =>{
         })
     }
 
-    return data
+    // Calculate total scores
+    const teamsWithTotalScores = data.map(team => ({
+        ...team,
+        totalScore: team.vault + team.bar + team.beam + team.floor,
+    }));
+    
+    // Calculate rankings without sorting
+    const rankedTeams = teamsWithTotalScores.map(team => ({
+        ...team,
+        ranking: teamsWithTotalScores.filter(t => t.totalScore > team.totalScore).length + 1,
+    }));
+    
+    console.log(rankedTeams);
+
+    return rankedTeams
 }
 
 const makeInitialMeetArray = (mode) =>{

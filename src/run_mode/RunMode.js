@@ -37,9 +37,12 @@ const RunMode  = () =>{
         setPP(true)
         setaddScore(false)
         setflashScore(false)
-        console.log("count", count, "total", total)
+        // console.log("count", count, "total", total)
         if(count.current >= total){
-            const data = finalPreparedData.current
+            const data = {
+                data:finalPreparedData.current,
+                mode:receivedData.current['setup']
+            }
             history.push({
                 pathname:"/postmeet",
                 state:{data}
