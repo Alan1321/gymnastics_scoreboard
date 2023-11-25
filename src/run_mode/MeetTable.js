@@ -28,6 +28,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 const MeetTable = ({ mode, data, ranking }) =>{
+    console.log(data, mode, ranking)
     const meetArray = makeInitialMeetArray(mode)
     const filledArray = updateMeetArray(meetArray, data)
     const rows = makeJson(filledArray)
@@ -123,9 +124,12 @@ const makeInitialMeetArray = (mode) =>{
     if (mode === 'duel') {
       numRows = 2;
       numColumns = 4;
-    } else if (mode === 'triangular' || mode === 'quad') {
+    } else if (mode === 'triangular') {
       numRows = 3;
       numColumns = 4;
+    } else if(mode === 'quad'){
+        numRows = 4
+        numColumns = 4
     } else {
       // Handle invalid mode
       throw new Error('Invalid mode');

@@ -51,8 +51,8 @@ const Setups = () =>{
                 <h1 style={{marginBottom:"50px"}}>Select Setup</h1>
                 <Stack spacing={10} direction="row">
                     <Button size="large" variant="outlined" onClick={duelHandler}>Duel</Button>
-                    <Button size="large" variant="outlined" onClick={triangularHandler} disabled={true}>Triangular</Button>
-                    <Button size="large" variant="outlined" onClick={quadHandler} disabled={true}>Quad</Button>
+                    <Button size="large" variant="outlined" onClick={triangularHandler} disabled={false}>Triangular</Button>
+                    <Button size="large" variant="outlined" onClick={quadHandler} disabled={false}>Quadrangular</Button>
                 </Stack>
             </div>
             }

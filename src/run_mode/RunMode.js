@@ -98,13 +98,13 @@ const prepareData = (data) =>{
     //add vault team3 (if triangular)
     var team3Vault = null;
     if(totalTeam() >= 3){
-        makeJsonofArray("Vault",data['team3']['lineUpInfo']['vaultLineup'], data['team3']['playerPictures'], data['team3']['teamName'], "team3", data['team3']['lineUpInfo']['vaultType'])
+        team3Vault = makeJsonofArray("Vault",data['team3']['lineUpInfo']['vaultLineup'], data['team3']['playerPictures'], data['team3']['teamName'], "team3", data['team3']['lineUpInfo']['vaultType'])
         finalData.push(team3Vault)
     }
     //add vault team4 (if triangular)
     var team4Vault = null;
     if(totalTeam() === 4){
-        makeJsonofArray("Vault",data['team4']['lineUpInfo']['vaultLineup'], data['team4']['playerPictures'], data['team4']['teamName'], "team4", data['team4']['lineUpInfo']['vaultType'])
+        team4Vault = makeJsonofArray("Vault",data['team4']['lineUpInfo']['vaultLineup'], data['team4']['playerPictures'], data['team4']['teamName'], "team4", data['team4']['lineUpInfo']['vaultType'])
         finalData.push(team4Vault)
     }
 
@@ -119,13 +119,13 @@ const prepareData = (data) =>{
     //add bar team3 (if triangular)
     var team3Bar = null;
     if(totalTeam() >= 3){
-        makeJsonofArray("Bar",data['team3']['lineUpInfo']['barLineup'], data['team3']['playerPictures'], data['team3']['teamName'], "team3")
+        team3Bar = makeJsonofArray("Bar",data['team3']['lineUpInfo']['barLineup'], data['team3']['playerPictures'], data['team3']['teamName'], "team3")
         finalData.push(team3Bar)
     }
     //add bar team4 (if triangular)
     var team4Bar = null;
     if(totalTeam() === 4){
-        makeJsonofArray("Bar",data['team4']['lineUpInfo']['barLineup'], data['team4']['playerPictures'], data['team4']['teamName'], "team4")
+        team4Bar = makeJsonofArray("Bar",data['team4']['lineUpInfo']['barLineup'], data['team4']['playerPictures'], data['team4']['teamName'], "team4")
         finalData.push(team4Bar)
     }
 
@@ -140,13 +140,13 @@ const prepareData = (data) =>{
     //add beam team3 (if triangular)
     var team3Beam = null;
     if(totalTeam() >= 3){
-        makeJsonofArray("Beam",data['team3']['lineUpInfo']['beamLineup'], data['team3']['playerPictures'], data['team3']['teamName'], "team3")
+        team3Beam = makeJsonofArray("Beam",data['team3']['lineUpInfo']['beamLineup'], data['team3']['playerPictures'], data['team3']['teamName'], "team3")
         finalData.push(team3Beam)
     }
     //add beam team4 (if triangular)
     var team4Beam = null;
     if(totalTeam() === 4){
-        makeJsonofArray("Beam",data['team4']['lineUpInfo']['beamLineup'], data['team4']['playerPictures'], data['team4']['teamName'], "team4")
+        team4Beam = makeJsonofArray("Beam",data['team4']['lineUpInfo']['beamLineup'], data['team4']['playerPictures'], data['team4']['teamName'], "team4")
         finalData.push(team4Beam)
     }
 
@@ -161,13 +161,13 @@ const prepareData = (data) =>{
     //add floor team3 (if triangular)
     var team3Floor = null;
     if(totalTeam() >= 3){
-        makeJsonofArray("Floor",data['team3']['lineUpInfo']['floorLineup'], data['team3']['playerPictures'], data['team3']['teamName'], "team3")
+        team3Floor = makeJsonofArray("Floor",data['team3']['lineUpInfo']['floorLineup'], data['team3']['playerPictures'], data['team3']['teamName'], "team3")
         finalData.push(team3Floor)
     }
     //add floor team4 (if triangular)
     var team4Floor = null;
     if(totalTeam() === 4){
-        makeJsonofArray("Floor",data['team4']['lineUpInfo']['floorLineup'], data['team4']['playerPictures'], data['team4']['teamName'], "team4")
+        team4Floor = makeJsonofArray("Floor",data['team4']['lineUpInfo']['floorLineup'], data['team4']['playerPictures'], data['team4']['teamName'], "team4")
         finalData.push(team4Floor)
     }
 
