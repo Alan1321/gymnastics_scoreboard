@@ -38,7 +38,7 @@ const PostMeet = () =>{
                             </Button>
                         </div>
             </div>
-            <h4 style={{textAlign:'center', width:"60%", flexDirection:"row-reverse", display:"flex", marginLeft:"5%"}}>'Note: Lowest Apparatus Score Dropped while calculating team rank -- runMode requiremen--> H'</h4>
+            <h4 style={{textAlign:'center', width:"60%", flexDirection:"row-reverse", display:"flex", marginLeft:"5%"}}>'Note: Lowest Apparatus Score Dropped while calculating team rank -- runMode requiremen -- H'</h4>
             <div style={{}}>
                 <MeetTable  data={data} mode={mode} ranking={true}/>
                 <PlayerTable data={data} mode={mode} ranking={true}/>
