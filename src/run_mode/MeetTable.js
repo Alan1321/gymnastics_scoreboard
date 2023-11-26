@@ -28,11 +28,11 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 const MeetTable = ({ mode, data, ranking }) =>{
-    console.log(data, mode, ranking)
+    // console.log(data, mode, ranking)
     const meetArray = makeInitialMeetArray(mode)
     const filledArray = updateMeetArray(meetArray, data)
     const rows = makeJson(filledArray)
-    console.log("rows", rows)
+    // console.log("rows", rows)
 
     return (
         <div style={{}}>

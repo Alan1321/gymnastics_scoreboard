@@ -61,6 +61,7 @@ const RunMode  = () =>{
         stopTimer()
         // console.log("count", count, "total", total)
         if(count.current >= total){
+            
             const data = {
                 data:finalPreparedData.current,
                 mode:receivedData.current['setup']
@@ -204,6 +205,7 @@ const makeJsonofArray = (performanceName, lineup, playerPictures, teamName, team
     const data = []
     for(var i = 0;i<lineup.length;i++){
         const other_info = getGymnastDetails(lineup[i])
+        // console.log(other_info)
         data.push({
             "playerName":lineup[i],
             "teamNumber":teamNumberasString,
@@ -213,9 +215,11 @@ const makeJsonofArray = (performanceName, lineup, playerPictures, teamName, team
             "vaultInfo":vaultInfo ? vaultInfo[i] : null,
             "class":other_info.class,
             "major":other_info.major,
-            "gpa":other_info.gpa
+            "gpa":other_info.gpa,
+            "average_score":other_info.average_score
         })
     }
+    // console.log(data)
     return data
 }
 

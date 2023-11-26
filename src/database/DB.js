@@ -35,8 +35,8 @@ export function getGymnastDetails(gymnastName) {
   
         // If the gymnast is found, return their details
         if (gymnast) {
-          const { class: gymnastClass, major, gpa } = gymnast;
-          return { class: gymnastClass, major, gpa };
+          const { class: gymnastClass, major, gpa, average_score } = gymnast;
+          return { class: gymnastClass, major, gpa, average_score };
         }
       }
     }

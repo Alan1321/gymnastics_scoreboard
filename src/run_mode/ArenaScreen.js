@@ -13,7 +13,7 @@ const ArenaScreen = ({ currentPlayer, playerisPlaying, flashScore, donePlaying, 
     }
 
     const color = backgroundColor === 'black' ? 'white' : 'black'
-
+    // console.log(currentPlayer)
     return (
         <div style={{width:"50%", backgroundColor:backgroundColor, color:color}}>
             <div style={{border:"1px solid grey"}}>
@@ -30,6 +30,7 @@ const ArenaScreen = ({ currentPlayer, playerisPlaying, flashScore, donePlaying, 
                         <li>GPA: {currentPlayer['gpa']}</li>
                         <li>Major: {currentPlayer['major']}</li>
                         <li>Performance: {currentPlayer['performanceName']}</li>
+                        <li>AverageScore: {currentPlayer['average_score']}</li>
                         {currentPlayer['vaultInfo'] ? <li>Vault Type: {currentPlayer['vaultInfo']}</li> : null}
                     </ul>
                 </div>
