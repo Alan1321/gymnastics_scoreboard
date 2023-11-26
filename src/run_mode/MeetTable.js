@@ -32,6 +32,7 @@ const MeetTable = ({ mode, data, ranking }) =>{
     const meetArray = makeInitialMeetArray(mode)
     const filledArray = updateMeetArray(meetArray, data)
     const rows = makeJson(filledArray)
+    console.log("rows", rows)
 
     return (
         <div style={{}}>
@@ -87,35 +88,37 @@ const MeetTable = ({ mode, data, ranking }) =>{
 
 export default MeetTable
 
-const makeJson = (filledArray) =>{
-    const team = ['Team1', 'Team2', 'Team3', 'Team4']
-    const data = []
-
+const makeJson = (filledArray) => {
+    const team = ['Team1', 'Team2', 'Team3', 'Team4'];
+    const data = [];
+  
     for (let i = 0; i < filledArray.length; i++) {
-        data.push({
-            name:team[i],
-            vault:filledArray[i][0],
-            bar:filledArray[i][1],
-            beam:filledArray[i][2],
-            floor:filledArray[i][3]
-        })
+      const [vault, bar, beam, floor] = filledArray[i];
+  
+      // Find the minimum score among the four disciplines
+      const minScore = Math.min(vault, bar, beam, floor);
+  
+      // Calculate total score excluding the minimum score
+      const totalScore = vault + bar + beam + floor - minScore;
+  
+      data.push({
+        name: team[i],
+        vault,
+        bar,
+        beam,
+        floor,
+        totalScore,
+      });
     }
-
-    // Calculate total scores
-    const teamsWithTotalScores = data.map(team => ({
-        ...team,
-        totalScore: team.vault + team.bar + team.beam + team.floor,
-    }));
-    
+  
     // Calculate rankings without sorting
-    const rankedTeams = teamsWithTotalScores.map(team => ({
-        ...team,
-        ranking: teamsWithTotalScores.filter(t => t.totalScore > team.totalScore).length + 1,
+    const rankedTeams = data.map((team) => ({
+      ...team,
+      ranking: data.filter((t) => t.totalScore > team.totalScore).length + 1,
     }));
-    
-
-    return rankedTeams
-}
+  
+    return rankedTeams;
+};
 
 const makeInitialMeetArray = (mode) =>{
     let numRows, numColumns;
