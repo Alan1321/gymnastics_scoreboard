@@ -1,11 +1,11 @@
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 
-const Timer = ({ timerComplete }) =>{
+const Timer = ({ timerComplete, time }) =>{
 
     return (
         <CountdownCircleTimer
           isPlaying
-          duration={20}
+          duration={time}
           colors={["#004777", "#F7B801", "#A30000", "#A30000"]}
           colorsTime={[10,5,3,0]}
           onComplete={() => timerComplete()}

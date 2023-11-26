@@ -6,14 +6,14 @@ import Timer from "./Timer";
 const ArenaScreen = ({ currentPlayer, playerisPlaying, flashScore, donePlaying, nextPlayer, backgroundColor }) =>{
 
     const time = {
-        "bar":30,
-        "beam":90,
-        "floor":70,
+        "Bar":30,
+        "Beam":90,
+        "Floor":70,
         "Vault":20
     }
 
     const color = backgroundColor === 'black' ? 'white' : 'black'
-    // console.log(currentPlayer)
+    console.log(currentPlayer)
     return (
         <div style={{width:"50%", backgroundColor:backgroundColor, color:color}}>
             <div style={{border:"1px solid grey"}}>
@@ -42,7 +42,7 @@ const ArenaScreen = ({ currentPlayer, playerisPlaying, flashScore, donePlaying, 
                             Add her Score!!
                         </Button>
                     </div>
-                    <Timer timerComplete={()=>donePlaying()} />
+                    <Timer timerComplete={()=>donePlaying()} time={time[currentPlayer['performanceName']]}/>
                 </div>
                 }
                 {flashScore && 

@@ -24,6 +24,8 @@ const RunMode  = () =>{
     // Timer-related state
     const [timerId, setTimerId] = useState(null);
 
+    console.log(finalPreparedData)
+
     // Function to start the timer
     const startTimer = () => {
         setTimerId(
