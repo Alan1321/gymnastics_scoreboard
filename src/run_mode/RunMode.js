@@ -14,11 +14,30 @@ const RunMode  = () =>{
     const count = useRef(1);
     const history = useHistory()
     const total = finalPreparedData.current.length * 6
+    const [flashColor, setFlashColor] = useState('white');
 
     //states
     const [playerisPlaying, setPP] = useState(true)
     const [addScore, setaddScore] = useState(false)
     const [flashScore, setflashScore] = useState(false)
+
+    // Timer-related state
+    const [timerId, setTimerId] = useState(null);
+
+    // Function to start the timer
+    const startTimer = () => {
+        setTimerId(
+        setInterval(() => {
+            setFlashColor((prevColor) => (prevColor === 'white' ? 'black' : 'white'));
+        }, 300)
+        );
+    };
+
+    // Function to stop the timer
+    const stopTimer = () => {
+        clearInterval(timerId);
+    };
+
     //states' enable/disable functions
     const donePlaying = () =>{
         setPP(false)
@@ -32,11 +51,14 @@ const RunMode  = () =>{
         //TODO: add score to the main data table
         finalPreparedData.current[currentPlayerIndex2[0]][currentPlayerIndex2[1]]['score'] = data
         setDataasState(finalPreparedData.current)
+        startTimer()
     }
     const nextPlayer = () =>{
         setPP(true)
         setaddScore(false)
         setflashScore(false)
+        setFlashColor('white')
+        stopTimer()
         // console.log("count", count, "total", total)
         if(count.current >= total){
             const data = {
@@ -64,7 +86,8 @@ const RunMode  = () =>{
         <div style={{width:"100%"}}>
             <div style={{height:'70px'}}></div>
             <div style={{display:'flex'}}>
-                <ArenaScreen currentPlayer={finalPreparedData.current[currentPlayerIndex2[0]][currentPlayerIndex2[1]]} playerisPlaying={playerisPlaying} flashScore={flashScore} donePlaying={donePlaying} nextPlayer={nextPlayer}/>
+                <ArenaScreen currentPlayer={finalPreparedData.current[currentPlayerIndex2[0]][currentPlayerIndex2[1]]} playerisPlaying={playerisPlaying} flashScore={flashScore} donePlaying={donePlaying} nextPlayer={nextPlayer}
+                backgroundColor={flashColor}/>
                 <ScoreKeeperScreen finalPreparedData={finalPreparedData.current} addScore={addScore} scoreAdded={scoreAdded} mode={receivedData.current['setup']} dataAsState={dataAsState}/>
             </div>
         </div>

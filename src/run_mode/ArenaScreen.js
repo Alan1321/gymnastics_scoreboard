@@ -3,7 +3,7 @@ import ShowImage from "../utils/ShowImage"
 import Button from '@mui/material/Button';
 import Timer from "./Timer";
 
-const ArenaScreen = ({ currentPlayer, playerisPlaying, flashScore, donePlaying, nextPlayer }) =>{
+const ArenaScreen = ({ currentPlayer, playerisPlaying, flashScore, donePlaying, nextPlayer, backgroundColor }) =>{
 
     const time = {
         "bar":30,
@@ -12,8 +12,10 @@ const ArenaScreen = ({ currentPlayer, playerisPlaying, flashScore, donePlaying, 
         "Vault":20
     }
 
+    const color = backgroundColor === 'black' ? 'white' : 'black'
+
     return (
-        <div style={{width:"50%"}}>
+        <div style={{width:"50%", backgroundColor:backgroundColor, color:color}}>
             <div style={{border:"1px solid grey"}}>
                 <h2 style={{textAlign:"center"}}>Arena Screen</h2>
             </div>
@@ -43,7 +45,7 @@ const ArenaScreen = ({ currentPlayer, playerisPlaying, flashScore, donePlaying, 
                 </div>
                 }
                 {flashScore && 
-                <div style={{display:"flex", flexDirection:"column", width:"100%", justifyContent:"center", alignItems:"center"}}>
+                <div style={{display:"flex", flexDirection:"column", width:"100%", justifyContent:"center", alignItems:"center", marginTop:"10px"}}>
                     <img src={process.env.PUBLIC_URL + "/new_score2.gif"} style={{height:"100px", width:"50%"}} />
                     <Button variant="contained" color="success" onClick={()=>nextPlayer()} disabled={false} style={{width:'50%'}}>
                         Great!! Move to Next Player
