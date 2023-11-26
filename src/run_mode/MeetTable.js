@@ -172,7 +172,7 @@ const updateMeetArray = (meetArray, data) => {
         const score = data[i][j]['score'] ? data[i][j]['score'] : null
         
         if(score){
-            meetArray[row][col] += parseInt(score)
+            meetArray[row][col] += parseFloat(score)
         }
     }
   }
