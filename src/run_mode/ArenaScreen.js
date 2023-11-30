@@ -3,7 +3,7 @@ import ShowImage from "../utils/ShowImage"
 import Button from '@mui/material/Button';
 import Timer from "./Timer";
 
-const ArenaScreen = ({ currentPlayer, playerisPlaying, flashScore, donePlaying, nextPlayer, backgroundColor }) =>{
+const ArenaScreen = ({ currentPlayer, playerisPlaying, flashScore, donePlaying, nextPlayer, backgroundColor, lineupChange }) =>{
 
     const time = {
         "Bar":30,
@@ -13,7 +13,7 @@ const ArenaScreen = ({ currentPlayer, playerisPlaying, flashScore, donePlaying, 
     }
 
     const color = backgroundColor === 'black' ? 'white' : 'black'
-    console.log(currentPlayer)
+    // console.log(currentPlayer)
     return (
         <div style={{width:"50%", backgroundColor:backgroundColor, color:color}}>
             <div style={{border:"1px solid grey"}}>
@@ -33,6 +33,11 @@ const ArenaScreen = ({ currentPlayer, playerisPlaying, flashScore, donePlaying, 
                         <li>AverageScore: {currentPlayer['average_score']}</li>
                         {currentPlayer['vaultInfo'] ? <li>Vault Type: {currentPlayer['vaultInfo']}</li> : null}
                     </ul>
+                    <div style={{marginLeft:"20%"}}>
+                        <Button variant="contained" color="info" onClick={lineupChange}>
+                            Change Next Lineup
+                        </Button>
+                    </div>
                 </div>
                 {playerisPlaying &&
                 <div style={{display:"flex", width:"100%"}}>

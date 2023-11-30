@@ -4,6 +4,12 @@ import ScoreKeeperScreen from "./ScoreKeeperScreen";
 import { getGymnastDetails } from "../database/DB";
 import ArenaScreen from "./ArenaScreen";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import Modal from "react-modal"
+import Button from '@mui/material/Button';
+import InputDropDownn from "../utils/InputDropDownn";
+import Swal from 'sweetalert2'
+
+Modal.setAppElement('#root');
 
 const RunMode  = () =>{
     const location = useLocation();
@@ -15,6 +21,8 @@ const RunMode  = () =>{
     const history = useHistory()
     const total = finalPreparedData.current.length * 6
     const [flashColor, setFlashColor] = useState('white');
+    const [LineUpState, changeLineUpState] = useState(false);
+    const [nextTeam, setNextTeam] = useState([null, null, null, null, null, null])
 
     //states
     const [playerisPlaying, setPP] = useState(true)
@@ -85,19 +93,115 @@ const RunMode  = () =>{
         setCurrentPlayerIndex2(indexArray)
     }
 
+    const lineupChange = () =>{
+        if(currentPlayerIndex2[0] >= 5){
+            return
+        }
+        changeLineUpState(true)
+        var nextIndex = getNextIndex(currentPlayerIndex2)
+        var nextTeam = finalPreparedData.current[nextIndex]
+        var nextTeamMemberNames = nextTeam.map(item=>item.playerName)
+        setNextTeam(nextTeamMemberNames)
+    }
+
+    const dataFromLineUpChanges = (data) =>{
+        console.log(data)
+        const hasDups = hasDuplicatesOrNulls(data)
+        if(hasDups){
+            Swal.fire({
+                title: 'Error!',
+                text: 'Duplicates/null found',
+                icon: 'error',
+                confirmButtonText: 'Reselect Teams'
+            })
+            return
+        }
+        changeLineUpState(false)
+        //TODO: do lineup change in the array
+        const jsonArray = finalPreparedData.current[currentPlayerIndex2[0] + 1] 
+
+        // Function to filter jsonArray based on data names while maintaining order
+        function filterDataByName(data, jsonArray) {
+            const dataMap = new Map(data.map((name, index) => [name, index]));
+            
+            return jsonArray
+            .filter(item => dataMap.has(item.playerName))
+            .sort((a, b) => dataMap.get(a.playerName) - dataMap.get(b.playerName));
+        }
+        
+        // Usage
+        const filteredData = filterDataByName(data, jsonArray);
+        finalPreparedData.current[currentPlayerIndex2[0] + 1] = filteredData
+    }
+
     return (
         <div style={{width:"100%"}}>
             <div style={{height:'70px'}}></div>
             <div style={{display:'flex'}}>
                 <ArenaScreen currentPlayer={finalPreparedData.current[currentPlayerIndex2[0]][currentPlayerIndex2[1]]} playerisPlaying={playerisPlaying} flashScore={flashScore} donePlaying={donePlaying} nextPlayer={nextPlayer}
-                backgroundColor={flashColor}/>
+                backgroundColor={flashColor} lineupChange={lineupChange} />
                 <ScoreKeeperScreen finalPreparedData={finalPreparedData.current} addScore={addScore} scoreAdded={scoreAdded} mode={receivedData.current['setup']} dataAsState={dataAsState}/>
+                <Modal
+                isOpen={LineUpState}
+                style={{
+                    overlay: {
+                        position: 'fixed',
+                        top: '50px',
+                        left: 0,
+                        right: 0,
+                        bottom: 0,
+                        backgroundColor: 'rgba(0,0,0,0.9)'
+                    },
+                    content:{
+                        backgroundColor:"rgba(255,255,255,0.8)",
+                    }
+                }}
+                >
+                    <div style={{display:'flex', justifyContent:'center', alignItems:'center'}}>
+                        <div style={{marginRight:"10%"}}>
+                            <h3 style={{textAlign:'center'}}>Current Next LineUp</h3>
+                            <ul style={{}}>
+                                {nextTeam.map((name)=>(
+                                    <li>{name}</li>
+                                ))}
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 style={{textAlign:"center"}}>Change LineUp</h3>
+                            <InputDropDownn data={nextTeam} dataFromLineUpChanges={dataFromLineUpChanges}/>
+                        </div>
+                    </div>
+                </Modal>
             </div>
         </div>
     )
 }
 
 export default RunMode
+
+function hasDuplicatesOrNulls(array) {
+    // Check for duplicates
+    const uniqueSet = new Set(array);
+    if (uniqueSet.size !== array.length) {
+      return true; // Array has duplicates
+    }
+  
+    // Check for null values
+    if (array.includes(null)) {
+      return true; // Array has null values
+    }
+  
+    return false; // Array has no duplicates or nulls
+}
+
+const getNextIndex  = (currentPlayerIndex2) =>{
+    console.log('lin 139', currentPlayerIndex2)
+    if(currentPlayerIndex2[0] >= 5){
+        console.log(currentPlayerIndex2[0], 'line 140')
+        return
+    }
+    return currentPlayerIndex2[0] + 1
+}
 
 const prepareData = (data) =>{
 
