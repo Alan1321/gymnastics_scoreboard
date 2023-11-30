@@ -23,6 +23,7 @@ const RunMode  = () =>{
     const [flashColor, setFlashColor] = useState('white');
     const [LineUpState, changeLineUpState] = useState(false);
     const [nextTeam, setNextTeam] = useState([null, null, null, null, null, null])
+    const [lineUpButton, setLineUpButton] = useState(true)
 
     //states
     const [playerisPlaying, setPP] = useState(true)
@@ -55,6 +56,7 @@ const RunMode  = () =>{
     }
     // console.log('count', count)
     const scoreAdded = (data) =>{
+        setLineUpButton(false)
         setPP(false)
         setaddScore(false)
         setflashScore(true)
@@ -64,6 +66,7 @@ const RunMode  = () =>{
         startTimer()
     }
     const nextPlayer = () =>{
+        setLineUpButton(true)
         setPP(true)
         setaddScore(false)
         setflashScore(false)
@@ -94,7 +97,7 @@ const RunMode  = () =>{
     }
 
     const lineupChange = () =>{
-        if(currentPlayerIndex2[0] >= 5){
+        if(currentPlayerIndex2[0] >= 7){
             return
         }
         changeLineUpState(true)
@@ -168,7 +171,7 @@ const RunMode  = () =>{
                         </div>
                         <div>
                             <h3 style={{textAlign:"center"}}>Change LineUp</h3>
-                            <InputDropDownn data={nextTeam} dataFromLineUpChanges={dataFromLineUpChanges}/>
+                            <InputDropDownn data={nextTeam} dataFromLineUpChanges={dataFromLineUpChanges} lineUpButton={lineUpButton}/>
                         </div>
                     </div>
                 </Modal>
@@ -196,7 +199,7 @@ function hasDuplicatesOrNulls(array) {
 
 const getNextIndex  = (currentPlayerIndex2) =>{
     console.log('lin 139', currentPlayerIndex2)
-    if(currentPlayerIndex2[0] >= 5){
+    if(currentPlayerIndex2[0] >= 7){
         console.log(currentPlayerIndex2[0], 'line 140')
         return
     }
