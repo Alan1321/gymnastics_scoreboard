@@ -2,7 +2,7 @@ import MenuItem from '@mui/material/MenuItem';
 import { TextField } from '@mui/material';
 import Button from '@mui/material/Button';
 
-const InputDropDownn = ({data, dataFromLineUpChanges, lineUpButton}) =>{
+const InputDropDownn = ({data, dataFromLineUpChanges}) =>{
 
     const choosenValues = [null, null, null, null, null, null]
     const marginBottom = "-2px";
@@ -120,7 +120,7 @@ const InputDropDownn = ({data, dataFromLineUpChanges, lineUpButton}) =>{
                 </TextField>
             </div>
             <div style={{width:"100%", display:'flex', justifyContent:"center", marginTop:'10%'}}>
-                <Button variant="contained" color="success" onClick={()=>dataFromLineUpChanges(choosenValues)} disabled={lineUpButton} >
+                <Button variant="contained" color="success" onClick={()=>dataFromLineUpChanges(choosenValues)} >
                     Done
                 </Button>
             </div>

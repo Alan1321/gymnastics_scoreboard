@@ -34,7 +34,7 @@ const ArenaScreen = ({ currentPlayer, playerisPlaying, flashScore, donePlaying, 
                         {currentPlayer['vaultInfo'] ? <li>Vault Type: {currentPlayer['vaultInfo']}</li> : null}
                     </ul>
                     <div style={{marginLeft:"20%"}}>
-                        <Button variant="contained" color="info" onClick={lineupChange}>
+                        <Button variant="contained" color="info" onClick={lineupChange} disabled={flashScore || playerisPlaying}>
                             Change Next Lineup
                         </Button>
                     </div>

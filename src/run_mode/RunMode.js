@@ -23,7 +23,6 @@ const RunMode  = () =>{
     const [flashColor, setFlashColor] = useState('white');
     const [LineUpState, changeLineUpState] = useState(false);
     const [nextTeam, setNextTeam] = useState([null, null, null, null, null, null])
-    const [lineUpButton, setLineUpButton] = useState(true)
 
     //states
     const [playerisPlaying, setPP] = useState(true)
@@ -56,7 +55,6 @@ const RunMode  = () =>{
     }
     // console.log('count', count)
     const scoreAdded = (data) =>{
-        setLineUpButton(false)
         setPP(false)
         setaddScore(false)
         setflashScore(true)
@@ -66,7 +64,6 @@ const RunMode  = () =>{
         startTimer()
     }
     const nextPlayer = () =>{
-        setLineUpButton(true)
         setPP(true)
         setaddScore(false)
         setflashScore(false)
@@ -97,11 +94,11 @@ const RunMode  = () =>{
     }
 
     const lineupChange = () =>{
-        if(currentPlayerIndex2[0] >= 7){
+        if(currentPlayerIndex2[0] >= finalPreparedData.current.length - 1){
             return
         }
         changeLineUpState(true)
-        var nextIndex = getNextIndex(currentPlayerIndex2)
+        var nextIndex = getNextIndex(currentPlayerIndex2, finalPreparedData)
         var nextTeam = finalPreparedData.current[nextIndex]
         var nextTeamMemberNames = nextTeam.map(item=>item.playerName)
         setNextTeam(nextTeamMemberNames)
@@ -142,7 +139,7 @@ const RunMode  = () =>{
             <div style={{height:'70px'}}></div>
             <div style={{display:'flex'}}>
                 <ArenaScreen currentPlayer={finalPreparedData.current[currentPlayerIndex2[0]][currentPlayerIndex2[1]]} playerisPlaying={playerisPlaying} flashScore={flashScore} donePlaying={donePlaying} nextPlayer={nextPlayer}
-                backgroundColor={flashColor} lineupChange={lineupChange} />
+                backgroundColor={flashColor} lineupChange={lineupChange}/>
                 <ScoreKeeperScreen finalPreparedData={finalPreparedData.current} addScore={addScore} scoreAdded={scoreAdded} mode={receivedData.current['setup']} dataAsState={dataAsState}/>
                 <Modal
                 isOpen={LineUpState}
@@ -171,7 +168,7 @@ const RunMode  = () =>{
                         </div>
                         <div>
                             <h3 style={{textAlign:"center"}}>Change LineUp</h3>
-                            <InputDropDownn data={nextTeam} dataFromLineUpChanges={dataFromLineUpChanges} lineUpButton={lineUpButton}/>
+                            <InputDropDownn data={nextTeam} dataFromLineUpChanges={dataFromLineUpChanges}/>
                         </div>
                     </div>
                 </Modal>
@@ -197,9 +194,9 @@ function hasDuplicatesOrNulls(array) {
     return false; // Array has no duplicates or nulls
 }
 
-const getNextIndex  = (currentPlayerIndex2) =>{
+const getNextIndex  = (currentPlayerIndex2, finalPreparedData) =>{
     console.log('lin 139', currentPlayerIndex2)
-    if(currentPlayerIndex2[0] >= 7){
+    if(currentPlayerIndex2[0] >= finalPreparedData.current.length - 1){
         console.log(currentPlayerIndex2[0], 'line 140')
         return
     }
